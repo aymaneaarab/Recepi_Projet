@@ -1,5 +1,8 @@
 import { useState } from "react";
 // import "./App.css";
+import { CiBookmark } from "react-icons/ci"; //bookmark vide 
+import { FaBookmark } from "react-icons/fa"; // bookmark with color
+
 import { useEffect } from "react";
 const key = "cbed10cacb9c81e2a7e48b59678ca090	";
 const app_id = "b90b16e8";
@@ -47,10 +50,9 @@ function Header({ query, setquery }) {
   return (
     <div className="bg-green-200	flex justify-between items-center p-5 rounded text-white content-center   ">
       <div className="flex">
-        {/* <span className="text-xl mx-3">🥦</span>
-        <p className="font-semibold tracking-widest font-mono"> Recipe</p>
-       */}
-       
+
+      <CiBookmark className="bookmark" />
+       <pre>الوصفات المحفوظة</pre>
       </div>
       <div className="">
         <input
@@ -109,8 +111,8 @@ function RecipeList({ query, recipes, setrecipes, selectrecipe }) {
       {recipes?.map((recipe, i) => (
         <div
           key={i}
-          className=" flex border  border-b-1  bg-transparent gap-2 p-9 "
-          onClick={() => selectrecipe(recipe._links.self.href)}
+          className=" flex border  border-b-1  bg-transparent gap-3 p-9 "
+          onClick={() => selectrecipe(recipe.recipe.recipe_id)}
         >
           {/* {console.log(recipe)} */}
           <img
@@ -132,37 +134,37 @@ function RecipeList({ query, recipes, setrecipes, selectrecipe }) {
 }
 
 function RecipeBoard({ selectedrecipe }) {
-  const [data, setdata] = useState();
-  // useEffect(() => {
-  //   const controller = new AbortController();
-  //   async function RecipeFetch() {
-  //     try {
-  //       const res = await fetch(selectedrecipe, { signal: controller.signal });
-  //       if (!res.ok) {
-  //         throw new Error("something wrong ");
-  //       }
-
-  //       const data = await res.json();
-  //       console.log("type de chainement d api", data);
-  //       if (data.response === false) {
-  //         throw new Error("Recipe Not found");
-  //       }
-
-  //       setdata(data?.recipe);
-  //       console.log("recipe", data?.recipe);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   }
-
-  //   RecipeFetch();
-  //   return function () {
-  //     controller.abort();
-  //   };
-  // }, [selectedrecipe]);
+  console.log(selectedrecipe)
+  const [data, setdata] = useState([]);
+  console.log("data",data)
+const filtredata = Array.isArray(data) && data.filter((d)=>d?.recipe?.recipe_id===selectedrecipe ) ;
+console.log("test",filtredata) ;
+useEffect(()=>{
+async function recipeselectedfetch(){
+const res= await fetch("http://localhost:9000/recipes").then((res)=>res.json()).then((res)=>setdata(res.recipes))
+}
+recipeselectedfetch();
+},[selectedrecipe])
   return (
     <div className=" bg-green-300 rounded-xl h-96 text-white overflow-scroll overflow-x-hidden mr-9 p-2">
-      {/* <div>{selectedrecipe && <img src={data?.image} alt="" />}</div> */}
+      <div>
+        
+        {selectedrecipe && filtredata && 
+      <div>
+<h1>{filtredata[0]?.recipe?.title}</h1>
+      <img src={filtredata[0]?.recipe?.image_url} alt="" />
+      <span>
+        <h6>:المكونات</h6>
+        <ul>
+        {filtredata[0]?.recipe?.ingredients.map(ing=><li>{ing}</li>)}
+        </ul>
+      </span>
+      <button className="bg-green-500 p-4">اضافة للمفضلة</button>
+      </div>
+      
+      }
+      
+      </div>
     </div>
   );
 }
