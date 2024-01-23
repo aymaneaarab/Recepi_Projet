@@ -1,64 +1,61 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const key = "cbed10cacb9c81e2a7e48b59678ca090";
 const app_id = "b90b16e8";
 
 export default function LayoutRecipe() {
-  const [recipes, setRecipes] = useState([]);
-  const [selectedId, setSelectedId] = useState("");
+  const [recipes, setrecipes] = useState([]);
+  const [selectedId, setselectedId] = useState("");
   const [selectedRecipe, setSelectedRecipe] = useState(null);
-  const [query, setQuery] = useState("");
-  const [searchHistory, setSearchHistory] = useState([]);
-  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
-  const [showFavoritePanel, setShowFavoritePanel] = useState(false);
+  const [query, setquery] = useState("");
+  const [showBookmarkList, setShowBookmarkList] = useState(false);
+  const [bookmarkList, setBookmarkList] = useState([]);
 
-  function selectRecipe(id) {
-    setSelectedId(id);
+  function selectrecipe(id) {
+    setselectedId(id);
   }
 
-  function handleSelectButtonClick() {
-    const selectedRecipe = recipes.find((recipe) => recipe._links.self.href === selectedId);
-    setSelectedRecipe(selectedRecipe);
-
-    setSearchHistory((prevHistory) => [...new Set([query, ...prevHistory])]);
-
-    setFavoriteRecipes((prevFavorites) => [...prevFavorites, selectedRecipe]);
+  function addToBookmarkList(recipe) {
+    setBookmarkList((prevList) => [...prevList, recipe]);
   }
 
-  function handleFavoritePanelClick() {
-    setShowFavoritePanel(!showFavoritePanel);
-  }
-
-  function handleFavoriteRecipeSelect(id) {
-    const selectedFavoriteRecipe = favoriteRecipes.find((recipe) => recipe._links.self.href === id);
-    setSelectedRecipe(selectedFavoriteRecipe);
+  function handleViewBookmarksClick() {
+    setShowBookmarkList(true);
   }
 
   return (
     <div className="bg-green-100 h-screen">
-      <Header query={query} setQuery={setQuery} />
+      <Header
+        query={query}
+        setquery={setquery}
+        handleViewBookmarksClick={handleViewBookmarksClick}
+      />
 
       <div className="grid grid-cols-3 h-96 gap-9 my-8">
-        <RecipeList query={query} recipes={recipes} setRecipes={setRecipes} selectRecipe={selectRecipe} />
-        <div className="h-auto w-1 bg-slate-400 justify-self-center"></div>
-        <RecipeBoard selectedRecipe={selectedRecipe} />
-        <Footer handleSelectButtonClick={handleSelectButtonClick} />
-        {showFavoritePanel && (
-          <FavoritePanel favoriteRecipes={favoriteRecipes} handleFavoriteRecipeSelect={handleFavoriteRecipeSelect} />
+        {showBookmarkList ? (
+          <BookmarkList bookmarkList={bookmarkList} />
+        ) : (
+          <>
+            <RecipeList
+              query={query}
+              recipes={recipes}
+              setrecipes={setrecipes}
+              selectrecipe={selectrecipe}
+            />
+
+            <div className="h-auto w-1 bg-slate-400 justify-self-center"></div>
+
+            <RecipeBoard selectedrecipe={selectedId} addToBookmarkList={addToBookmarkList} />
+
+            <Footer addToBookmarkList={() => addToBookmarkList(selectedRecipe)} />
+          </>
         )}
       </div>
-
-      <button
-        className="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded"
-        onClick={handleFavoritePanelClick}
-      >
-        {showFavoritePanel ? "Close Favorites" : "Open Favorites"}
-      </button>
     </div>
   );
 }
 
-function Header({ query, setQuery }) {
+function Header({ query, setquery, handleViewBookmarksClick }) {
   return (
     <div className="bg-green-200 flex justify-between items-center p-5 rounded text-white content-center">
       <div className="flex">
@@ -71,15 +68,22 @@ function Header({ query, setQuery }) {
           className="bg-green-300 placeholder-white rounded p-2"
           placeholder="Search for a recipe"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => setquery(e.target.value)}
         />
       </div>
-      <div className="font-semibold">Recipe found :</div>
+      <div className="font-semibold">
+        <button
+          className="bg-green-500 text-white px-4 py-2 rounded"
+          onClick={handleViewBookmarksClick}
+        >
+          View Bookmarks
+        </button>
+      </div>
     </div>
   );
 }
 
-function RecipeList({ query, recipes, setRecipes, selectRecipe }) {
+function RecipeList({ query, recipes, setrecipes, selectrecipe }) {
   useEffect(() => {
     const controller = new AbortController();
 
@@ -100,14 +104,14 @@ function RecipeList({ query, recipes, setRecipes, selectRecipe }) {
           throw new Error("Recipe not found");
         }
 
-        setRecipes(data.hits);
+        setrecipes(data.hits);
       } catch (err) {
         console.log(err);
       }
     }
 
     if (!query.length) {
-      setRecipes([]);
+      setrecipes([]);
       return;
     }
 
@@ -116,7 +120,7 @@ function RecipeList({ query, recipes, setRecipes, selectRecipe }) {
     return function () {
       controller.abort();
     };
-  }, [query, setRecipes]);
+  }, [query, setrecipes]);
 
   return (
     <div className="bg-green-300 rounded-xl h-96 text-white overflow-auto ml-16 p-2">
@@ -124,9 +128,16 @@ function RecipeList({ query, recipes, setRecipes, selectRecipe }) {
         <div
           key={i}
           className="flex border border-b-1 bg-transparent gap-2 p-9"
-          onClick={() => selectRecipe(recipe._links.self.href)}
+          onClick={() => selectrecipe(recipe._links.self.href)}
         >
-          <img src={recipe.recipe.image} alt={recipe.recipe.label} height="60px" width="70px" className="rounded" />
+          <img
+            src={recipe.recipe.image}
+            alt={recipe.recipe.label}
+            height="60px"
+            width="70px"
+            className="rounded"
+          />
+
           <div className="text-white">
             <h3>{recipe.recipe.label}</h3>
             <span>Author: {recipe.recipe.source}</span>
@@ -137,7 +148,7 @@ function RecipeList({ query, recipes, setRecipes, selectRecipe }) {
   );
 }
 
-function RecipeBoard({ selectedRecipe }) {
+function RecipeBoard({ selectedrecipe, addToBookmarkList }) {
   const [data, setdata] = useState();
 
   useEffect(() => {
@@ -145,7 +156,7 @@ function RecipeBoard({ selectedRecipe }) {
 
     async function RecipeFetch() {
       try {
-        const res = await fetch(selectedRecipe, { signal: controller.signal });
+        const res = await fetch(selectedrecipe, { signal: controller.signal });
         if (!res.ok) {
           throw new Error("Failed to fetch recipe details");
         }
@@ -166,17 +177,23 @@ function RecipeBoard({ selectedRecipe }) {
     return function () {
       controller.abort();
     };
-  }, [selectedRecipe]);
+  }, [selectedrecipe]);
+
+  const handleAddToBookmarkClick = () => {
+    addToBookmarkList(data);
+  };
 
   return (
     <div className="bg-green-300 rounded-xl h-96 text-white overflow-scroll overflow-x-hidden mr-9 p-2">
       {data && (
         <div>
           <img src={data?.image} alt={data?.label} className="rounded" />
+
           <div className="mt-2">
             <h2>{data?.label}</h2>
             <p>{data?.description}</p>
           </div>
+
           <div className="mt-4">
             <h3>Ingredients:</h3>
             <ul>
@@ -185,44 +202,45 @@ function RecipeBoard({ selectedRecipe }) {
               ))}
             </ul>
           </div>
+
+          <button
+            className="bg-green-500 text-white px-4 py-2 rounded mt-4"
+            onClick={handleAddToBookmarkClick}
+          >
+            Add to Bookmarks
+          </button>
         </div>
       )}
     </div>
   );
 }
 
-function Footer({ handleSelectButtonClick }) {
+function Footer({ addToBookmarkList }) {
   return (
     <div className="col-span-3 flex justify-center mt-4">
-      <button className="bg-green-500 text-white px-4 py-2 rounded" onClick={handleSelectButtonClick}>
+      <button
+        className="bg-green-500 text-white px-4 py-2 rounded"
+        onClick={addToBookmarkList}
+      >
         Select
       </button>
     </div>
   );
 }
 
-function FavoritePanel({ favoriteRecipes, handleFavoriteRecipeSelect }) {
+function BookmarkList({ bookmarkList }) {
   return (
-    <div className="fixed top-0 right-0 h-screen w-1/4 bg-green-200 p-4 overflow-y-auto">
-      <h2 className="text-xl font-semibold mb-4">Favorite Recipes</h2>
-      <div className="grid gap-4">
-        {favoriteRecipes.map((recipe, index) => (
-          <div
-            key={index}
-            className="bg-white p-4 rounded shadow cursor-pointer"
-            onClick={() => handleFavoriteRecipeSelect(recipe._links.self.href)}
-          >
-            <img
-              src={recipe.recipe.image}
-              alt={recipe.recipe.label}
-              className="rounded mb-2"
-              style={{ width: "100%" }}
-            />
-            <h3 className="text-lg font-semibold">{recipe.recipe.label}</h3>
-            <p className="text-sm text-gray-500">{recipe.recipe.source}</p>
+    <div className="bg-green-300 rounded-xl h-96 text-white overflow-auto ml-16 p-2">
+      {bookmarkList.map((recipe, i) => (
+        <div key={i} className="flex border border-b-1 bg-transparent gap-2 p-9">
+          <img src={recipe.image} alt={recipe.label} height="60px" width="70px" className="rounded" />
+
+          <div className="text-white">
+            <h3>{recipe.label}</h3>
+            <span>Author: {recipe.source}</span>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 }
