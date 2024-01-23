@@ -140,43 +140,42 @@
           "publisher_url": "http://thepioneerwoman.com",
           "title": "سلطة النودل الآسيوية"
         }
-      }
-      ,
+      },
       {
         "recipe": {
-        "publisher": "اثنان من البازلاء وتوابلهم",
-        "ingredients": [
-        "للصلصة:",
-        "3 ملاعق كبيرة زيت زيتون",
-        "3 ملاعق كبيرة عصير ليمون طازج",
-        "1 ملعقة صغيرة عسل أو شراب الأجاوف",
-        "1 فص ثوم، مفروم",
-        "1 ملعقة كبيرة من الريحان الطازج المفروم",
-        "ملح وفلفل أسود طازج، حسب الذوق",
-        "للسلطة:",
-        "2 كوب ماء",
-        "1 كوب كينوا",
-        "1/2 ملعقة صغيرة ملح",
-        "2 ملعقة صغيرة زيت زيتون",
-        "حزمة صغيرة من الهليون، حوالي 15 حبة، مقطعة إلى قطع بطول 1 إنش",
-        "1 ملعقة كبيرة عصير ليمون طازج",
-        "1 كوب بازلاء مجمدة",
-        "1 أفوكادو، مقطعة",
-        "ملح وفلفل أسود طازج، حسب الذوق",
-        "1/4 كوب من الريحان المفروم"
-        ],
-        "source_url": "http://www.twopeasandtheirpod.com/quinoa-salad-with-asparagus-peas-avocado-lemon-basil-dressing/",
-        "recipe_id": "5cc4a8",
-        "image_url": "http://forkify-api.herokuapp.com/images/SpringQuinoaSalad3ba71.jpg",
-        "social_rank": 99.99999999993314,
-        "publisher_url": "http://www.twopeasandtheirpod.com",
-        "title": "سلطة الكينوا مع الهليون والبازلاء والأفوكادو وصلصة الليمون والريحان"
+          "publisher": "اثنان من البازلاء وتوابلهم",
+          "ingredients": [
+            "للصلصة:",
+            "3 ملاعق كبيرة زيت زيتون",
+            "3 ملاعق كبيرة عصير ليمون طازج",
+            "1 ملعقة صغيرة عسل أو شراب الأجاوف",
+            "1 فص ثوم، مفروم",
+            "1 ملعقة كبيرة من الريحان الطازج المفروم",
+            "ملح وفلفل أسود طازج، حسب الذوق",
+            "للسلطة:",
+            "2 كوب ماء",
+            "1 كوب كينوا",
+            "1/2 ملعقة صغيرة ملح",
+            "2 ملعقة صغيرة زيت زيتون",
+            "حزمة صغيرة من الهليون، حوالي 15 حبة، مقطعة إلى قطع بطول 1 إنش",
+            "1 ملعقة كبيرة عصير ليمون طازج",
+            "1 كوب بازلاء مجمدة",
+            "1 أفوكادو، مقطعة",
+            "ملح وفلفل أسود طازج، حسب الذوق",
+            "1/4 كوب من الريحان المفروم"
+          ],
+          "source_url": "http://www.twopeasandtheirpod.com/quinoa-salad-with-asparagus-peas-avocado-lemon-basil-dressing/",
+          "recipe_id": "5cc4a8",
+          "image_url": "http://forkify-api.herokuapp.com/images/SpringQuinoaSalad3ba71.jpg",
+          "social_rank": 99.99999999993314,
+          "publisher_url": "http://www.twopeasandtheirpod.com",
+          "title": "سلطة الكينوا مع الهليون والبازلاء والأفوكادو وصلصة الليمون والريحان"
         }
-        },
-        {
-            "recipe": {
-            "publisher": "امرأة الرائد",
-            "ingredients": [
+      },
+      {
+        "recipe": {
+          "publisher": "امرأة الرائد",
+          "ingredients": [
             "السلطة:",
             "2 رؤوس من الخس الأيسبرغ، مفروم",
             "8 أوقية من سبانخ البيبي، مغسولة وجافة",
@@ -192,40 +191,102 @@
             "1/2 كوب من الكريمة الحامضة",
             "ملعقة كبيرة سكر (أكثر حسب الذوق)",
             "شبت طازج، مفروم"
-            ],
-            "source_url": "http://thepioneerwoman.com/cooking/2010/08/layered-salad/",
-            "recipe_id": "47106",
-            "image_url": "http://forkify-api.herokuapp.com/images/4940301746_c16a4e7edf_o72c2.jpg",
-            "social_rank": 99.99999999969766,
-            "publisher_url": "http://thepioneerwoman.com",
-            "title": "سلطة متنوعة"
-            }
-            }
-   , {
-    "recipe": {
-    "publisher": "BBC Good Food",
-    "ingredients": [
-    "علبة من الحمص بوزن 400 جرام، مشطفة ومصفاة",
-    "ثوم مفروم",
-    "حفنة من البقدونس الأوراق المسطحة أو البقدونس المجعد",
-    "ملعقة صغيرة من الكمون المطحون",
-    "ملعقة صغيرة من الكزبرة المطحونة",
-    "1/2 ملعقة صغيرة من معجون الحريصا أو مسحوق الفلفل الحار",
-    "ملعقتان كبيرتان من الطحين الأبيض",
-    "ملعقتان كبيرتان من زيت دوار الشمس",
-    "خبز بيتا محمص",
-    "علبة بوزن 200 جرام من صلصة الطماطم، للتقديم",
-    "سلطة خضراء، للتقديم",
-    "بصل أحمر صغير، مقطع إلى قطع كبيرة"
-    ],
-    "source_url": "http://www.bbcgoodfood.com/recipes/5605/falafel-burgers",
-    "recipe_id": "6132fc",
-    "image_url": "http://forkify-api.herokuapp.com/images/5605_MEDIUMe040.jpg",
-    "social_rank": 99.99999997278992,
-    "publisher_url": "http://www.bbcgoodfood.com",
-    "title": "برغر الفلافل"
-    }
-    }
- ]
+          ],
+          "source_url": "http://thepioneerwoman.com/cooking/2010/08/layered-salad/",
+          "recipe_id": "47106",
+          "image_url": "http://forkify-api.herokuapp.com/images/4940301746_c16a4e7edf_o72c2.jpg",
+          "social_rank": 99.99999999969766,
+          "publisher_url": "http://thepioneerwoman.com",
+          "title": "سلطة متنوعة"
+        }
+      },
+      {
+        "recipe": {
+          "publisher": "BBC Good Food",
+          "ingredients": [
+            "علبة من الحمص بوزن 400 جرام، مشطفة ومصفاة",
+            "ثوم مفروم",
+            "حفنة من البقدونس الأوراق المسطحة أو البقدونس المجعد",
+            "ملعقة صغيرة من الكمون المطحون",
+            "ملعقة صغيرة من الكزبرة المطحونة",
+            "1/2 ملعقة صغيرة من معجون الحريصا أو مسحوق الفلفل الحار",
+            "ملعقتان كبيرتان من الطحين الأبيض",
+            "ملعقتان كبيرتان من زيت دوار الشمس",
+            "خبز بيتا محمص",
+            "علبة بوزن 200 جرام من صلصة الطماطم، للتقديم",
+            "سلطة خضراء، للتقديم",
+            "بصل أحمر صغير، مقطع إلى قطع كبيرة"
+          ],
+          "source_url": "http://www.bbcgoodfood.com/recipes/5605/falafel-burgers",
+          "recipe_id": "6132fc",
+          "image_url": "http://forkify-api.herokuapp.com/images/5605_MEDIUMe040.jpg",
+          "social_rank": 99.99999997278992,
+          "publisher_url": "http://www.bbcgoodfood.com",
+          "title": "برغر الفلافل"
+        }
+      },
+      {
+        "recipe": {
+          "publisher": "Simply Recipes",
+          "ingredients": [
+            "2 رطل من البطاطا الحلوة، حوالي 3 حبات كبيرة",
+            "1/4 كوب زيت الزيتون أو زيت نباتي آخر",
+            "1-2 ملعقة كبيرة سكر",
+            "1 ملعقة كبيرة ملح",
+            "1-2 ملعقة كبيرة بهار أو مزيج بهارات حسب اختيارك: مسحوق الشيبوتل، بابريكا مدخنة، خليط البهارات الصينية، بهار الدم السادس، بهار اليقطين، جارام ماسالا، بهار الكاجون، إلخ."
+          ],
+          "source_url": "http://www.simplyrecipes.com/recipes/oven_baked_sweet_potato_fries/",
+          "recipe_id": "36665",
+          "image_url": "http://forkify-api.herokuapp.com/images/sweetpotatofriesa300x200177a9e27.jpg",
+          "social_rank": 100,
+          "publisher_url": "http://simplyrecipes.com",
+          "title": "بطاطا حلوة محمصة في الفرن"
+        }
+      },
+      {
+        "recipe": {
+          "publisher": "امرأة الرائد",
+          "ingredients": [
+            "12 حبة بطاطا جديدة (أو أي نوع آخر من البطاطا الصغيرة والدائرية)",
+            "3 ملاعق طعام زيت زيتون",
+            "ملح كوشير حسب الذوق",
+            "فلفل أسود حسب الذوق",
+            "إكليل الجبل (أو أعشاب أخرى حسب الاختيار) حسب الذوق"
+          ],
+          "source_url": "http://thepioneerwoman.com/cooking/2008/06/crash-hot-potatoes/",
+          "recipe_id": "47319",
+          "image_url": "http://forkify-api.herokuapp.com/images/CrashHotPotatoes5736.jpg",
+          "social_rank": 100,
+          "publisher_url": "http://thepioneerwoman.com",
+          "title": "بطاطا كراش هوت"
+        }
+      },
+      {
+        "recipe": {
+          "publisher": "Real Simple",
+          "ingredients": [
+            "4 رطل من لحم العجل السفلي، مقطع إلى قطع بطول 2 إنش ومنظف جيدًا",
+            "1 كوب طحين لجميع الاستعمالات",
+            "1/3 كوب زيت الزيتون (زائد إذا لزم الأمر)",
+            "2 بصل كبير، مقطع إلى مكعبات (2 أكواب)",
+            "علبة صغيرة (6 أوقية) من معجون الطماطم",
+            "1 كوب من النبيذ الأحمر الجاف",
+            "رطل واحد من البطاطا، مقطعة إلى قطع بطول 2 إنش (حوالي 4 أكواب)",
+            "نصف رطل من الجزر الصغيرة (حوالي 2 كوب)",
+            "2 كوب من مرق اللحم",
+            "ملعقة طعام واحدة من الملح الكوشير",
+            "ملعقة صغيرة من أوراق الزعتر الجافة",
+            "ورقة غار واحدة",
+            "1 كوب من البازلاء المجمدة، مذابة"
+          ],
+          "source_url": "http://www.realsimple.com/food-recipes/browse-all-recipes/slow-cooker-recipe-classic-beef-stew-10000000614077/index.html",
+          "recipe_id": "38773",
+          "image_url": "http://forkify-api.herokuapp.com/images/beef_3004a58b171.jpg",
+          "social_rank": 99.99999999999608,
+          "publisher_url": "http://realsimple.com",
+          "title": "طبق اللحم البطيء الكلاسيكي"
+        }
+      }
+    ]
   }
 }
