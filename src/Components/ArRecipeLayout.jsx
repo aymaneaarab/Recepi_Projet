@@ -2,17 +2,19 @@ import { useState } from "react";
 // import "./App.css";
 import { CiBookmark } from "react-icons/ci"; //bookmark vide
 import { FaBookmark } from "react-icons/fa"; // bookmark with color
-
+import Recepi from "../Test/recepi.png";
 import { useEffect } from "react";
 import { Alert } from "@mui/material";
 const key = "cbed10cacb9c81e2a7e48b59678ca090	";
 const app_id = "b90b16e8";
 
 export default function ArRecipe() {
+
+  const [abierto,setabierto]=useState(true);
+
   useEffect(() => {
     setTimeout(() => {}, 5000);
   }, []);
-const [bookmarkclicked,setbookmarkclicked]=useState(false);
   const [query, setquery] = useState("");
   const [recipes, setrecipes] = useState();
   let searchedRecipes = recipes?.filter((r) => r?.recipe.title.includes(query));
@@ -20,7 +22,6 @@ const [bookmarkclicked,setbookmarkclicked]=useState(false);
     searchedRecipes = [];
   }
 
- 
   const [selectedId, setselectedId] = useState("");
   function selectrecipe(id) {
     setselectedId(id);
@@ -29,21 +30,31 @@ const [bookmarkclicked,setbookmarkclicked]=useState(false);
   //bookmarks states and functions 👍
 
   const [bookmark, setbookmark] = useState([]);
+  const [bookmarkclicked, setbookmarkclicked] = useState(false);
 
   function addtobookmark(newb) {
     setbookmark([...bookmark, newb]);
   }
-  function clickbookmark(){
-    setbookmarkclicked(!bookmarkclicked)
+  function clickbookmark() {
+    setbookmarkclicked(!bookmarkclicked);
   }
 
   return (
     <div className="bg-green-100 h-screen">
-      <Header query={query} setquery={setquery} clickbookmark={clickbookmark} bookmarkclicked={bookmarkclicked} />
+      <Header
+        query={query}
+        setquery={setquery}
+        clickbookmark={clickbookmark}
+        bookmarkclicked={bookmarkclicked}
+      />
       <div className="grid grid-cols-3 h-96 gap-9 my-8">
         <RecipeBoard
           selectedrecipe={selectedId}
           addtobookmark={addtobookmark}
+          bookmark={bookmark}
+          bookmarkclicked={bookmarkclicked}
+          abierto={abierto}
+          setabierto={setabierto}
         />
         <div className="h-auto w-1 bg-slate-400 justify-self-center"></div>
         <RecipeList
@@ -51,20 +62,22 @@ const [bookmarkclicked,setbookmarkclicked]=useState(false);
           recipes={searchedRecipes}
           setrecipes={setrecipes}
           selectrecipe={selectrecipe}
+          setabierto={setabierto}
         />
       </div>
     </div>
   );
 }
 
-function Header({ query, setquery , clickbookmark , bookmarkclicked }) {
+function Header({ query, setquery, clickbookmark, bookmarkclicked }) {
   return (
     <div className="bg-green-200	flex justify-between items-center p-5 rounded text-white content-center   ">
       <div className="flex" onClick={clickbookmark}>
-      {
-      !bookmarkclicked ?  <CiBookmark className="bookmark" /> : <FaBookmark className="bookmark"/>
-
-      } 
+        {!bookmarkclicked ? (
+          <CiBookmark className="bookmark" />
+        ) : (
+          <FaBookmark className="bookmark" />
+        )}
         <pre>الوصفات المحفوظة</pre>
       </div>
       <div className="">
@@ -78,12 +91,15 @@ function Header({ query, setquery , clickbookmark , bookmarkclicked }) {
       </div>
       <div className="flex">
         <span className="text-xl mx-3">🥦</span>
-        <p className="font-semibold tracking-widest font-mono"> Recipe</p>
+        <div className="font-semibold tracking-widest font-mono justify-self-end">
+          {/* <img src={Recepi} alt="Recepi Logo" height="20%" width="20%" className="ml-36 lg:ml-96 justify-self-start	" /> */}
+          Recepi
+        </div>
       </div>{" "}
     </div>
   );
 }
-function RecipeList({ query, recipes, setrecipes, selectrecipe }) {
+function RecipeList({ query, recipes, setrecipes, selectrecipe , setabierto }) {
   useEffect(() => {
     const controller = new AbortController();
     const timefetching = setTimeout(() => {
@@ -121,14 +137,19 @@ function RecipeList({ query, recipes, setrecipes, selectrecipe }) {
     }; // component unmount
   }, [query, setrecipes]);
 
+  function  recipee(e){
+e.preventDefault();
+setabierto(true)
+  }
   return (
     <div className=" bg-green-300 rounded-xl h-96 text-white overflow-auto  ml-16 p-2 ">
       {recipes?.map((recipe, i) => (
         <div
           key={i}
           className=" flex border  border-b-1  bg-transparent gap-3 p-9 "
-          onClick={() => selectrecipe(recipe.recipe.recipe_id)}
-        >
+          onClick={()=>{selectrecipe(recipe.recipe.recipe_id) ; setabierto(true) }}
+          >
+
           {/* {console.log(recipe)} */}
           <img
             src={recipe.recipe.image_url}
@@ -148,7 +169,13 @@ function RecipeList({ query, recipes, setrecipes, selectrecipe }) {
   );
 }
 
-function RecipeBoard({ selectedrecipe, addtobookmark }) {
+function RecipeBoard({
+  selectedrecipe,
+  addtobookmark,
+  bookmarkclicked,
+  bookmark, abierto,
+  setabierto
+}) {
   // console.log(selectedrecipe)
   const [data, setdata] = useState([]);
   // console.log("data",data)
@@ -174,15 +201,14 @@ function RecipeBoard({ selectedrecipe, addtobookmark }) {
     e.preventDefault();
     addtobookmark(newbookmark);
     // setaded(!added);
-   
-
+    setabierto(!abierto)
   }
 
-  
   return (
     <div className=" bg-green-300 rounded-xl h-96 text-white overflow-scroll overflow-x-hidden mr-9 p-2">
       <div>
-        {selectedrecipe && filtredata && (
+    
+        {selectedrecipe && filtredata && abierto &&(
           <div>
             <h1>{filtredata[0]?.recipe?.title}</h1>
             <img src={filtredata[0]?.recipe?.image_url} alt="" />
@@ -206,3 +232,29 @@ function RecipeBoard({ selectedrecipe, addtobookmark }) {
     </div>
   );
 }
+
+
+
+
+//the code for showing the bookmarks on the other side  it has a lot of errors to tomorow 
+// {bookmarkclicked &&
+//   bookmark?.map((b, i) => (
+//     <div
+//       key={i}
+//       className=" flex border  border-b-1  bg-transparent gap-3 p-9 "
+//     >
+//       {/* {console.log(recipe)} */}
+//       <img
+//         src={b?.recipe?.image_url}
+//         alt={b?.recipe?.title}
+//         height="60px"
+//         width="70px"
+//         className="rounded"
+//       />
+
+//       <div className="text-white">
+//         <h3>{b?.recipe?.title}</h3>
+//         {/* <span>{recipe.recipe.publisher}:الكاتب</span> */}
+//       </div>
+//     </div>
+//   ))}
