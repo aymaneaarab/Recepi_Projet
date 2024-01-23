@@ -111,38 +111,62 @@ function RecipeList({ query, recipes, setrecipes, selectrecipe }) {
   );
 }
 
+// RecipeBoard Component
 function RecipeBoard({ selectedrecipe }) {
   const [data, setdata] = useState();
+
   useEffect(() => {
     const controller = new AbortController();
+
     async function RecipeFetch() {
       try {
         const res = await fetch(selectedrecipe, { signal: controller.signal });
         if (!res.ok) {
-          throw new Error("something wrong ");
+          throw new Error("Failed to fetch recipe details");
         }
 
         const data = await res.json();
-        console.log("type de chainement d api", data);
         if (data.response === false) {
-          throw new Error("Recipe Not found");
+          throw new Error("Recipe details not found");
         }
 
         setdata(data?.recipe);
-        console.log("recipe", data?.recipe);
       } catch (err) {
         console.log(err);
       }
     }
 
     RecipeFetch();
+
     return function () {
       controller.abort();
     };
   }, [selectedrecipe]);
+
   return (
-    <div className=" bg-green-300 rounded-xl h-96 text-white overflow-scroll overflow-x-hidden mr-9 p-2">
-      <div>{selectedrecipe && <img src={data?.image} alt="" />}</div>
+    <div className="bg-green-300 rounded-xl h-96 text-white overflow-scroll overflow-x-hidden mr-9 p-2">
+      {data && (
+        <div>
+          {/* Recipe image */}
+          <img src={data?.image} alt={data?.label} className="rounded" />
+
+          {/* Description */}
+          <div className="mt-2">
+            <h2>{data?.label}</h2>
+            <p>{data?.description}</p>
+          </div>
+
+          {/* Ingredients */}
+          <div className="mt-4">
+            <h3>Ingredients:</h3>
+            <ul>
+              {data?.ingredients.map((ingredient, index) => (
+                <li key={index}>{ingredient.text}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
