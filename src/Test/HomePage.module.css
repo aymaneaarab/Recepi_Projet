@@ -148,13 +148,14 @@ a.ctaLink:visited {
     font-size: 1.6rem;
     border: none;
     border-radius: 5px;
+    color: #242a2e;
     background-color: var(--color-light--3);
     transition: all 0.2s;
   }
   
   .input:focus {
     outline: none;
-    background-color: #fff;
+    /* background-color: #fff; */
   }
   
   .cta:link,
@@ -290,3 +291,7 @@ a.ctaLink:visited {
   border-radius: 7px;
 }
 
+select{
+  color: #242a2e;
+margin-left: 14px;
+}

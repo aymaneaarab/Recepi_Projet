@@ -1,10 +1,10 @@
 import React from "react";
-// import styles from "./HomePage.module.css";
-import recepi from "./recepi.png";
+import styles from "./HomePage.module.css";
+// import recepi from "./recepi.png";
 
 export default function Homepage() {
   return (
-    <main className="homepage">
+    <main className={styles.homepage}>
       <PageNav />
 
       <section>
@@ -17,7 +17,7 @@ export default function Homepage() {
           A site that provide to you more than 1.000.000 recipites and give the
           disponibility of adding recipites to your bookmark ☘
         </h2>
-        <a href="google.com" className="cta">
+        <a href="google.com" className={styles.cta}>
           Start Now !!
         </a>
       </section>
@@ -27,7 +27,7 @@ export default function Homepage() {
 
 function PageNav() {
   return (
-    <nav className="nav">
+    <nav className={styles.nav}>
       <Logo />
 
       <ul>
@@ -35,7 +35,7 @@ function PageNav() {
           <a href="google.com">About us</a>
         </li>
         <li>
-          <a href="#" aria-disabled>Choose your language</a>{" "}
+          <a href="#">Choose your language</a>{" "}
           <select name="" id="">
             {/* <option value="" disabled>Choose your Language </option> */}
             <option value="">English</option>
@@ -50,7 +50,9 @@ function PageNav() {
 function Logo() {
   return (
     <a href="google.com">
-      <img src={recepi} alt="recepi logo" className="logo" />
+      {/* <img src={recepi} alt="recepi logo" className={styles.logo} /> */}
+      <h3 className="text-3xl font-semibold tracking-widest font-mono" >🥦 Recepi</h3>
+    
     </a>
   );
 }

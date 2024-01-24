@@ -97,7 +97,7 @@ function Header({ query, setquery, clickbookmark, bookmarkclicked }) {
         <span className="text-xl mx-3">🥦</span>
         <div className="font-semibold tracking-widest font-mono justify-self-end">
           {/* <img src={Recepi} alt="Recepi Logo" height="20%" width="20%" className="ml-36 lg:ml-96 justify-self-start	" /> */}
-          Recepi
+          RECEPI
         </div>
       </div>{" "}
     </div>

@@ -60,7 +60,7 @@ function Header({ query, setquery, handleViewBookmarksClick }) {
     <div className="bg-green-200 flex justify-between items-center p-5 rounded text-white content-center">
       <div className="flex">
         <span className="text-xl mx-3">🥦</span>
-        <p className="font-semibold tracking-widest font-mono"> Recipe</p>
+        <p className="font-semibold tracking-widest font-mono"> RECEPI</p>
       </div>
       <div className="">
         <input
