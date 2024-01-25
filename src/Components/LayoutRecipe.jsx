@@ -1,105 +1,36 @@
-
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { CiBookmark } from "react-icons/ci";
+import { FaBookmark } from "react-icons/fa";
+import { Alert } from "@mui/material";
 
 const key = "cbed10cacb9c81e2a7e48b59678ca090";
 const app_id = "b90b16e8";
 
 export default function LayoutRecipe() {
-  const [recipes, setrecipes] = useState([]);
-  const [selectedId, setselectedId] = useState("");
+  const [recipes, setRecipes] = useState([]);
+  const [selectedId, setSelectedId] = useState("");
   const [selectedRecipe, setSelectedRecipe] = useState(null);
-  const [query, setquery] = useState("");
+  const [query, setQuery] = useState("");
   const [showBookmarkList, setShowBookmarkList] = useState(false);
-  const [bookmarkList, setBookmarkList] = useState([]);
+  const [bookmarks, setBookmarks] = useState([]);
 
-  function selectrecipe(id) {
-    setselectedId(id);
+  function selectRecipe(id) {
+    setSelectedId(id);
   }
 
   function addToBookmarkList(recipe) {
-    setBookmarkList((prevList) => [...prevList, recipe]);
+    setBookmarks((prevBookmarks) => [...prevBookmarks, recipe]);
   }
 
   function handleViewBookmarksClick() {
-    setShowBookmarkList(true);
+    setShowBookmarkList(!showBookmarkList);
+    setSelectedId(""); // Reset selected recipe ID when switching views
   }
 
-  return (
-    <div className="bg-green-100 h-screen">
-      <Header
-        query={query}
-        setquery={setquery}
-        handleViewBookmarksClick={handleViewBookmarksClick}
-      />
-
-      <div className="grid grid-cols-3 h-96 gap-9 my-8">
-        <RecipeList
-          query={query}
-          recipes={recipes}
-          setrecipes={setrecipes}
-          selectrecipe={selectrecipe}
-        />
-
-        {showBookmarkList ? (
-          <BookmarkList bookmarkList={bookmarkList} />
-        ) : (
-          <>
-            <div className="h-auto w-1 bg-slate-400 justify-self-center"></div>
-
-            <RecipeBoard
-              selectedrecipe={selectedId}
-              addToBookmarkList={addToBookmarkList}
-              selectedRecipe={selectedRecipe}
-              setSelectedRecipe={setSelectedRecipe}
-            />
-
-            <Footer
-              addToBookmarkList={() => addToBookmarkList(selectedRecipe)}
-              selectedRecipe={selectedRecipe}
-            />
-          </>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function Header({ query, setquery, handleViewBookmarksClick }) {
-  return (
-    <div className="bg-green-200 flex justify-between items-center p-5 rounded text-white content-center">
-      <div className="flex">
-        <NavLink to="/">
- <span className="text-xl mx-3">🥦</span>
-        <p className="font-semibold tracking-widest font-mono"> RECEPI</p>
-        </NavLink>
-      </div>
-      <div className="">
-        <input
-          type="text"
-          className="bg-green-300 placeholder-white rounded p-2"
-          placeholder="Search for a recipe"
-          value={query}
-          onChange={(e) => setquery(e.target.value)}
-        />
-      </div>
-      <div className="font-semibold">
-        <button
-          className="bg-green-500 text-white px-4 py-2 rounded"
-          onClick={handleViewBookmarksClick}
-        >
-          View Bookmarks
-        </button>
-      </div>
-    </div>
-  );
-}
-
-function RecipeList({ query, recipes, setrecipes, selectrecipe }) {
   useEffect(() => {
     const controller = new AbortController();
 
-    async function RecipeFetch() {
+    async function fetchRecipes() {
       try {
         const res = await fetch(
           `https://api.edamam.com/api/recipes/v2?type=public&beta=false&q=${query}&app_id=${app_id}&app_key=${key}`,
@@ -116,23 +47,129 @@ function RecipeList({ query, recipes, setrecipes, selectrecipe }) {
           throw new Error("Recipe not found");
         }
 
-        setrecipes(data.hits);
+        setRecipes(data.hits);
       } catch (err) {
         console.log(err);
       }
     }
 
     if (!query.length) {
-      setrecipes([]);
+      setRecipes([]);
       return;
     }
 
-    RecipeFetch();
+    fetchRecipes();
 
     return function () {
       controller.abort();
     };
-  }, [query, setrecipes]);
+  }, [query]);
+
+  return (
+    <div className="bg-green-100 h-screen">
+      <Header
+        query={query}
+        setQuery={setQuery}
+        handleViewBookmarksClick={handleViewBookmarksClick}
+      />
+
+      <div className="grid grid-cols-3 h-96 gap-9 my-8">
+        <RecipeList
+          query={query}
+          recipes={recipes}
+          setRecipes={setRecipes}
+          selectRecipe={selectRecipe}
+        />
+
+        {showBookmarkList ? (
+          <BookmarkList bookmarks={bookmarks} />
+        ) : (
+          <>
+            <div className="h-auto w-1 bg-slate-400 justify-self-center"></div>
+
+            <RecipeBoard
+              selectedRecipeId={selectedId}
+              addToBookmarkList={addToBookmarkList}
+              setSelectedRecipe={setSelectedRecipe}
+            />
+
+            <Footer
+              addToBookmarkList={() => addToBookmarkList(selectedRecipe)}
+              selectedRecipe={selectedRecipe}
+            />
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function Header({ query, setQuery, handleViewBookmarksClick }) {
+  return (
+    <div className="bg-green-200 flex justify-between items-center p-5 rounded text-white content-center">
+      <div className="flex">
+        <span className="text-xl mx-3">🥦</span>
+        <p className="font-semibold tracking-widest font-mono"> RECEPI</p>
+      </div>
+      <div className="">
+        <input
+          type="text"
+          className="bg-green-300 placeholder-white rounded p-2"
+          placeholder="Search for a recipe"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+      </div>
+      <div className="font-semibold">
+        <button
+          className="bg-green-500 text-white px-4 py-2 rounded"
+          onClick={handleViewBookmarksClick}
+        >
+          View Bookmarks
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function RecipeList({ query, recipes, setRecipes, selectRecipe }) {
+  useEffect(() => {
+    const controller = new AbortController();
+
+    async function fetchRecipes() {
+      try {
+        const res = await fetch(
+          `https://api.edamam.com/api/recipes/v2?type=public&beta=false&q=${query}&app_id=${app_id}&app_key=${key}`,
+          { signal: controller.signal }
+        );
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch recipes");
+        }
+
+        const data = await res.json();
+
+        if (data.response === false) {
+          throw new Error("Recipe not found");
+        }
+
+        setRecipes(data.hits);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    if (!query.length) {
+      setRecipes([]);
+      return;
+    }
+
+    fetchRecipes();
+
+    return function () {
+      controller.abort();
+    };
+  }, [query, setRecipes]);
 
   return (
     <div className="bg-green-300 rounded-xl h-96 text-white overflow-auto ml-16 p-2">
@@ -140,7 +177,7 @@ function RecipeList({ query, recipes, setrecipes, selectrecipe }) {
         <div
           key={i}
           className="flex border border-b-1 bg-transparent gap-2 p-9"
-          onClick={() => selectrecipe(recipe._links.self.href)}
+          onClick={() => selectRecipe(recipe._links.self.href)}
         >
           <img
             src={recipe.recipe.image}
@@ -160,15 +197,15 @@ function RecipeList({ query, recipes, setrecipes, selectrecipe }) {
   );
 }
 
-function RecipeBoard({ selectedrecipe, addToBookmarkList, selectedRecipe, setSelectedRecipe }) {
-  const [data, setdata] = useState();
+function RecipeBoard({ selectedRecipeId, addToBookmarkList, setSelectedRecipe }) {
+  const [data, setData] = useState();
 
   useEffect(() => {
     const controller = new AbortController();
 
-    async function RecipeFetch() {
+    async function fetchRecipeDetails() {
       try {
-        const res = await fetch(selectedrecipe, { signal: controller.signal });
+        const res = await fetch(selectedRecipeId, { signal: controller.signal });
         if (!res.ok) {
           throw new Error("Failed to fetch recipe details");
         }
@@ -178,18 +215,18 @@ function RecipeBoard({ selectedrecipe, addToBookmarkList, selectedRecipe, setSel
           throw new Error("Recipe details not found");
         }
 
-        setdata(data?.recipe);
+        setData(data?.recipe);
       } catch (err) {
         console.log(err);
       }
     }
 
-    RecipeFetch();
+    fetchRecipeDetails();
 
     return function () {
       controller.abort();
     };
-  }, [selectedrecipe]);
+  }, [selectedRecipeId]);
 
   const handleAddToBookmarkClick = () => {
     addToBookmarkList(data);
@@ -240,10 +277,10 @@ function Footer({ addToBookmarkList, selectedRecipe }) {
   );
 }
 
-function BookmarkList({ bookmarkList }) {
+function BookmarkList({ bookmarks }) {
   return (
     <div className="bg-green-300 rounded-xl h-96 text-white overflow-auto ml-16 p-2">
-      {bookmarkList.map((recipe, i) => (
+      {bookmarks.map((recipe, i) => (
         <div key={i} className="flex border border-b-1 bg-transparent gap-2 p-9">
           <img
             src={recipe.image}

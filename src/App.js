@@ -9,11 +9,8 @@ import { Route, Routes } from 'react-router';
 
 function App() {
   return (
-<Routes>
-  <Route index element={<Homepage/>} />
-  <Route path='search' element ={<LayoutRecipe/>} />
-  <Route path='searchAr' element={<ArRecipe/>}/>
-</Routes>
+
+<LayoutRecipe/>
   );
 }
 
