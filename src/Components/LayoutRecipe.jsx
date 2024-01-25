@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 const key = "cbed10cacb9c81e2a7e48b59678ca090";
 const app_id = "b90b16e8";
@@ -68,8 +69,10 @@ function Header({ query, setquery, handleViewBookmarksClick }) {
   return (
     <div className="bg-green-200 flex justify-between items-center p-5 rounded text-white content-center">
       <div className="flex">
-        <span className="text-xl mx-3">🥦</span>
-        <p className="font-semibold tracking-widest font-mono"> Recipe</p>
+        <NavLink to="/">
+ <span className="text-xl mx-3">🥦</span>
+        <p className="font-semibold tracking-widest font-mono"> RECEPI</p>
+        </NavLink>
       </div>
       <div className="">
         <input
