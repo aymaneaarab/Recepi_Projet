@@ -1,16 +1,15 @@
 import { useState } from "react";
-// import "./App.css";
 import { CiBookmark } from "react-icons/ci"; //bookmark vide
 import { FaBookmark } from "react-icons/fa"; // bookmark with color
-import Recepi from "../Test/recepi.png";
+// import Recepi from "../Test/recepi.png";
 import { useEffect } from "react";
 import { Alert } from "@mui/material";
-const key = "cbed10cacb9c81e2a7e48b59678ca090	";
-const app_id = "b90b16e8";
+// const key = "cbed10cacb9c81e2a7e48b59678ca090	";
+// const app_id = "b90b16e8";
 
 export default function ArRecipe() {
   //state for blcok of detaille recipe if is opened
-  const [abierto,setabierto]=useState(true);
+  const [abierto, setabierto] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {}, 5000);
@@ -78,8 +77,7 @@ function Header({ query, setquery, clickbookmark, bookmarkclicked }) {
           <CiBookmark className="bookmark" />
         ) : (
           <div>
-
-          <FaBookmark className="bookmark" />
+            <FaBookmark className="bookmark" />
           </div>
         )}
         <pre>الوصفات المحفوظة</pre>
@@ -103,7 +101,7 @@ function Header({ query, setquery, clickbookmark, bookmarkclicked }) {
     </div>
   );
 }
-function RecipeList({ query, recipes, setrecipes, selectrecipe , setabierto }) {
+function RecipeList({ query, recipes, setrecipes, selectrecipe, setabierto }) {
   useEffect(() => {
     const controller = new AbortController();
     const timefetching = setTimeout(() => {
@@ -141,9 +139,9 @@ function RecipeList({ query, recipes, setrecipes, selectrecipe , setabierto }) {
     }; // component unmount
   }, [query, setrecipes]);
 
-  function  recipee(e){
-e.preventDefault();
-setabierto(true)
+  function recipee(e) {
+    e.preventDefault();
+    setabierto(true);
   }
   return (
     <div className=" bg-green-300 rounded-xl h-96 text-white overflow-auto  ml-16 p-2 ">
@@ -151,9 +149,11 @@ setabierto(true)
         <div
           key={i}
           className=" flex border  border-b-1  bg-transparent gap-3 p-9 "
-          onClick={()=>{selectrecipe(recipe.recipe.recipe_id) ; setabierto(true) }}
-          >
-
+          onClick={() => {
+            selectrecipe(recipe.recipe.recipe_id);
+            setabierto(true);
+          }}
+        >
           {/* {console.log(recipe)} */}
           <img
             src={recipe.recipe.image_url}
@@ -177,8 +177,9 @@ function RecipeBoard({
   selectedrecipe,
   addtobookmark,
   bookmarkclicked,
-  bookmark, abierto,
-  setabierto
+  bookmark,
+  abierto,
+  setabierto,
 }) {
   // console.log(selectedrecipe)
   const [data, setdata] = useState([]);
@@ -205,21 +206,20 @@ function RecipeBoard({
     e.preventDefault();
     addtobookmark(newbookmark);
     // setaded(!added);
-    setabierto(!abierto)
+    setabierto(!abierto);
   }
 
   return (
     <div className=" bg-green-300 rounded-xl h-96 text-white overflow-scroll overflow-x-hidden mr-9 p-2">
       <div>
-    
-        {selectedrecipe && filtredata && abierto &&  !bookmarkclicked  &&(
+        {selectedrecipe && filtredata && abierto && !bookmarkclicked && (
           <div>
             <h1>{filtredata[0]?.recipe?.title}</h1>
             <img src={filtredata[0]?.recipe?.image_url} alt="" />
             <span>
               <h6>:المكونات</h6>
               <ul>
-                {filtredata[0]?.recipe?.ingredients.map((ing,i) => (
+                {filtredata[0]?.recipe?.ingredients.map((ing, i) => (
                   <li key={i}>{ing}</li>
                 ))}
               </ul>
@@ -232,59 +232,66 @@ function RecipeBoard({
             </button>
           </div>
         )}
-{/* {
+        {/* {
   bookmark &&
 } */}
 
-{
-bookmarkclicked && bookmark && 
-<h6>الوصفات المحفوظة الخاصة بك :</h6>
-}
+        {bookmarkclicked && bookmark && <h6>الوصفات المحفوظة الخاصة بك :</h6>}
 
-        {
-          
-          bookmarkclicked && bookmark &&  bookmark.map((b,i)=> 
-          <div>
-          <div key={i} className="flex border  border-b-1  bg-transparent gap-3 p-9">
-          {console.log("test object structure b",b)}
-         <img src={b?.image_url} alt={b?.title} width="70px" height="70px" />
-         {console.log(b?.image_url)}
-       <h6 className="text-slate-50">{b?.title}</h6>
-       {console.log(b?.title)}
-         </div>
-          </div>
-          )
-        }
+        {bookmarkclicked &&
+          bookmark &&
+          bookmark.map((b, i) => (
+            <div>
+              <div
+                key={i}
+                className="flex border  border-b-1  bg-transparent gap-3 p-9"
+              >
+                {console.log("test object structure b", b)}
+                <img
+                  src={b?.image_url}
+                  alt={b?.title}
+                  width="70px"
+                  height="70px"
+                />
+                {console.log(b?.image_url)}
+                <h6 className="text-slate-50">{b?.title}</h6>
+                {console.log(b?.title)}
+              </div>
+            </div>
+          ))}
       </div>
     </div>
   );
 }
 
-function Bookmarksdisplay (bookmark,bookmarkclicked){
-return (
-  <div className="rounded-xl h-96 text-white overflow-auto  ml-16 p-2">
-{
-  bookmarkclicked && bookmark && Array.isArray(bookmark) && 
-
- bookmark?.map((b,i)=>
-
- <div key={i} className="flex border  border-b-1  bg-transparent gap-3 p-9">
-   {console.log("test object structure b",b)}
-  <img src={b[0]?.image_url} alt={b[0]?.title} width="70px" height="70px" />
-  {console.log(b[0]?.image_url)}
-<h6 className="text-slate-50">{b?.title}</h6>
-{console.log(b[0]?.title)}
-  </div>
- )
-} 
-   </div>
-)
-
+function Bookmarksdisplay(bookmark, bookmarkclicked) {
+  return (
+    <div className="rounded-xl h-96 text-white overflow-auto  ml-16 p-2">
+      {bookmarkclicked &&
+        bookmark &&
+        Array.isArray(bookmark) &&
+        bookmark?.map((b, i) => (
+          <div
+            key={i}
+            className="flex border  border-b-1  bg-transparent gap-3 p-9"
+          >
+            {console.log("test object structure b", b)}
+            <img
+              src={b[0]?.image_url}
+              alt={b[0]?.title}
+              width="70px"
+              height="70px"
+            />
+            {console.log(b[0]?.image_url)}
+            <h6 className="text-slate-50">{b?.title}</h6>
+            {console.log(b[0]?.title)}
+          </div>
+        ))}
+    </div>
+  );
 }
 
-
-
-//the code for showing the bookmarks on the other side  it has a lot of errors to tomorow 
+//the code for showing the bookmarks on the other side  it has a lot of errors to tomorow
 // {bookmarkclicked &&
 //   bookmark?.map((b, i) => (
 //     <div

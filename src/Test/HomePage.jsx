@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./HomePage.module.css";
+import { NavLink } from "react-router-dom";
 // import recepi from "./recepi.png";
 
 export default function Homepage() {
@@ -17,9 +18,10 @@ export default function Homepage() {
           A site that provide to you more than 1.000.000 recipites and give the
           disponibility of adding recipites to your bookmark ☘
         </h2>
-        <a href="google.com" className={styles.cta}>
+        {/* <a href="google.com" className={styles.cta}>
           Start Now !!
-        </a>
+        </a> */}
+        <NavLink to="search" className={styles.cta} > Start Now !! </NavLink>
       </section>
     </main>
   );
