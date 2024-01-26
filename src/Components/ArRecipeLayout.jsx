@@ -1,3 +1,5 @@
+import { Button, Modal } from "antd";
+
 import { useState } from "react";
 import { CiBookmark } from "react-icons/ci"; //bookmark vide
 import { FaBookmark } from "react-icons/fa"; // bookmark with color
@@ -70,6 +72,8 @@ export default function ArRecipe() {
 }
 
 function Header({ query, setquery, clickbookmark, bookmarkclicked }) {
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="bg-green-200	flex justify-between items-center p-5 rounded text-white content-center   ">
       <div className="flex cursor-pointer" onClick={clickbookmark}>
@@ -81,6 +85,62 @@ function Header({ query, setquery, clickbookmark, bookmarkclicked }) {
           </div>
         )}
         <pre>الوصفات المحفوظة</pre>
+      </div>
+      <div>
+        <Button
+          type="text"
+          className="text-white"
+          onClick={() => setOpen(true)}
+        >
+          اضافة وصفة للقائمة
+        </Button>
+        <Modal
+          title="اضافة وصفة جديدة للقائمة"
+          centered
+          open={open}
+          onOk={() => setOpen(false)}
+          onCancel={() => setOpen(false)}
+          width={1000}
+          okButtonProps={{
+            style: { backgroundColor: "green" },
+            
+          }}
+          okText="اضافة"
+          cancelText="الغاء"
+        
+        >
+          <form>
+            <div className="p-11">
+              <input type="text" />
+              <label>اسم الوصفة</label>
+              <input type="text" />
+              <label>ناشر الوصفة</label>
+              <input type="text" />
+              <label>رابط صورة الوصفة</label>
+              <input type="text" />
+              <label>المكون الاول</label>
+
+              <input type="text" />
+              <label>المكون الثاني</label>
+              <input type="text" />
+              <label>المكون الثالث</label>
+              <input type="text" />
+              <label>المكون الرابع</label>
+              <input type="text" />
+              <label>المكون الخامس</label>
+              <input type="text" />
+              <label>المكون السادس</label>
+              <input type="text" />
+              <label>المكون السابع</label>
+              <input type="text" />
+              <label>المكون الثامن</label>
+              <input type="text" />
+              <label>المكون التاسع</label>
+              <input type="text" />
+              <label>المكون العاشر</label>
+            </div>
+          </form>
+        </Modal>{" "}
       </div>
       <div className="">
         <input
@@ -264,32 +324,34 @@ function RecipeBoard({
   );
 }
 
-function Bookmarksdisplay(bookmark, bookmarkclicked) {
-  return (
-    <div className="rounded-xl h-96 text-white overflow-auto  ml-16 p-2">
-      {bookmarkclicked &&
-        bookmark &&
-        Array.isArray(bookmark) &&
-        bookmark?.map((b, i) => (
-          <div
-            key={i}
-            className="flex border  border-b-1  bg-transparent gap-3 p-9"
-          >
-            {console.log("test object structure b", b)}
-            <img
-              src={b[0]?.image_url}
-              alt={b[0]?.title}
-              width="70px"
-              height="70px"
-            />
-            {console.log(b[0]?.image_url)}
-            <h6 className="text-slate-50">{b?.title}</h6>
-            {console.log(b[0]?.title)}
-          </div>
-        ))}
-    </div>
-  );
-}
+// that the second test component for showing bookmarks , doesent work
+
+// function Bookmarksdisplay(bookmark, bookmarkclicked) {
+//   return (
+//     <div className="rounded-xl h-96 text-white overflow-auto  ml-16 p-2">
+//       {bookmarkclicked &&
+//         bookmark &&
+//         Array.isArray(bookmark) &&
+//         bookmark?.map((b, i) => (
+//           <div
+//             key={i}
+//             className="flex border  border-b-1  bg-transparent gap-3 p-9"
+//           >
+//             {console.log("test object structure b", b)}
+//             <img
+//               src={b[0]?.image_url}
+//               alt={b[0]?.title}
+//               width="70px"
+//               height="70px"
+//             />
+//             {console.log(b[0]?.image_url)}
+//             <h6 className="text-slate-50">{b?.title}</h6>
+//             {console.log(b[0]?.title)}
+//           </div>
+//         ))}
+//     </div>
+//   );
+// }
 
 //the code for showing the bookmarks on the other side  it has a lot of errors to tomorow
 // {bookmarkclicked &&
