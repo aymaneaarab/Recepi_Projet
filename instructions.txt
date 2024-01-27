@@ -2,3 +2,5 @@ tools used on the app :
 tailwind - json server -fetch api
 22/01/2024
     // i install json server to fetch the data from my json file and i configure the command for server 
+
+    
