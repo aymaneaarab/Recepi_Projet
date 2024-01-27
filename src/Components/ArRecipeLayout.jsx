@@ -1,16 +1,17 @@
 import { Button, Modal } from "antd";
+import toast, { Toaster } from "react-hot-toast";
 
 import { useState } from "react";
 import { CiBookmark } from "react-icons/ci"; //bookmark vide
 import { FaBookmark } from "react-icons/fa"; // bookmark with color
 // import Recepi from "../Test/recepi.png";
 import { useEffect } from "react";
-import { Alert } from "@mui/material";
+// import { Alert } from "@mui/material";
 // const key = "cbed10cacb9c81e2a7e48b59678ca090	";
 // const app_id = "b90b16e8";
 
 export default function ArRecipe() {
-  //state for blcok of detaille recipe if is opened
+  //state for block of detaille recipe if is opened
   const [abierto, setabierto] = useState(true);
 
   useEffect(() => {
@@ -103,11 +104,9 @@ function Header({ query, setquery, clickbookmark, bookmarkclicked }) {
           width={1000}
           okButtonProps={{
             style: { backgroundColor: "green" },
-            
           }}
           okText="اضافة"
           cancelText="الغاء"
-        
         >
           <form>
             <div className="p-11">
@@ -267,6 +266,15 @@ function RecipeBoard({
     addtobookmark(newbookmark);
     // setaded(!added);
     setabierto(!abierto);
+    toast.success(
+      "تمت الاضافة بنجاح",
+      {
+        position: "bottom-right",
+      },
+      {
+        duration:10000
+      }
+    );
   }
 
   return (
@@ -284,12 +292,15 @@ function RecipeBoard({
                 ))}
               </ul>
             </span>
-            <button
-              className="bg-green-500 p-4"
-              onClick={(e) => recipeboardaddbtn(e)}
-            >
-              اضافة للمفضلة
-            </button>
+            <div>
+              <button
+                className="bg-green-500 p-4"
+                onClick={(e) => recipeboardaddbtn(e)}
+              >
+                اضافة للمفضلة
+              </button>
+              <Toaster position="bottom-right" reverseOrder={false} />
+            </div>
           </div>
         )}
         {/* {
