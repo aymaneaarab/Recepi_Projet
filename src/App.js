@@ -10,7 +10,10 @@ import { Route, Routes } from 'react-router';
 function App() {
   return (
 
-<ArRecipe/>  );
+<LayoutRecipe/> 
+
+)
+
 }
 
 export default App;
