@@ -242,12 +242,13 @@ function RecipeBoard({
 }) {
   // console.log(selectedrecipe)
   const [data, setdata] = useState([]);
+
   // console.log("data",data)
   const filtredata =
     Array.isArray(data) &&
     data.filter((d) => d?.recipe?.recipe_id === selectedrecipe);
   // console.log("test",filtredata) ;
-  // const [added, setaded] = useState(false);
+  const [added, setaded] = useState(false);
   useEffect(() => {
     async function recipeselectedfetch() {
       const res = await fetch("http://localhost:9000/recipes")
@@ -263,20 +264,22 @@ function RecipeBoard({
   };
   function recipeboardaddbtn(e) {
     e.preventDefault();
+    // toast.success(
+    //   "تمت الاضافة بنجاح",
+    //   {
+    //     position: "bottom-right",
+    //   },
+    //   {
+    //     duration: 10000,
+    //   }
+    // );
     addtobookmark(newbookmark);
-    // setaded(!added);
+    setaded(true);
     setabierto(!abierto);
-    toast.success(
-      "تمت الاضافة بنجاح",
-      {
-        position: "bottom-right",
-      },
-      {
-        duration:10000
-      }
-    );
   }
-
+function setadedfalse(){
+  setaded(false)
+}
   return (
     <div className=" bg-green-300 rounded-xl h-96 text-white overflow-scroll overflow-x-hidden mr-9 p-2">
       <div>
@@ -299,7 +302,10 @@ function RecipeBoard({
               >
                 اضافة للمفضلة
               </button>
-              <Toaster position="bottom-right" reverseOrder={false} />
+            
+            {
+              added && <AddSucceful added={added} setaded={setadedfalse}/>
+            }
             </div>
           </div>
         )}
@@ -333,6 +339,33 @@ function RecipeBoard({
       </div>
     </div>
   );
+}
+
+
+function AddSucceful (added,setaded){
+useEffect(()=>{
+  toast.success(
+    "تمت الاضافة بنجاح",
+    {
+      position: "bottom-right",
+    },
+    {
+      duration: 10000,
+    }
+  );
+setTimeout(()=>{
+  setaded()
+},
+4000
+)
+},[added,setaded])
+
+return (
+  <Toaster position="bottom-right" reverseOrder={false} 
+              
+  toastOptions={{
+   duration: 10000} }/>
+)
 }
 
 // that the second test component for showing bookmarks , doesent work
