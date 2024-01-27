@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { CiBookmark } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa";
 import { Alert } from "@mui/material";
@@ -81,9 +81,13 @@ export default function LayoutRecipe() {
           selectRecipe={selectRecipe}
         />
 
-        {showBookmarkList ? (
-          <BookmarkList bookmarks={bookmarks} />
-        ) : (
+        {showBookmarkList && (
+          <div className="bg-green-300 rounded-xl h-96 text-white overflow-auto ml-16 p-2">
+            <BookmarkList bookmarks={bookmarks} setBookmarks={setBookmarks} />
+          </div>
+        )}
+
+        {!showBookmarkList && (
           <>
             <div className="h-auto w-1 bg-slate-400 justify-self-center"></div>
 
@@ -277,9 +281,15 @@ function Footer({ addToBookmarkList, selectedRecipe }) {
   );
 }
 
-function BookmarkList({ bookmarks }) {
+function BookmarkList({ bookmarks, setBookmarks }) {
+  const handleRemoveClick = (index) => {
+    const updatedBookmarks = [...bookmarks];
+    updatedBookmarks.splice(index, 1);
+    setBookmarks(updatedBookmarks);
+  };
+
   return (
-    <div className="bg-green-300 rounded-xl h-96 text-white overflow-auto ml-16 p-2">
+    <div className="bg-green-300 rounded-xl h-96 text-white overflow-auto p-2">
       {bookmarks.map((recipe, i) => (
         <div key={i} className="flex border border-b-1 bg-transparent gap-2 p-9">
           <img
@@ -293,6 +303,25 @@ function BookmarkList({ bookmarks }) {
           <div className="text-white">
             <h3>{recipe.label}</h3>
             <span>Author: {recipe.source}</span>
+          </div>
+
+          <div className="flex items-center">
+            <button
+              className="bg-red-500 text-white px-3 py-1 rounded mr-2"
+              onClick={() => handleRemoveClick(i)}
+            >
+              Remove
+            </button>
+            {/* Replace 'url' with the actual property containing the recipe URL */}
+            <a
+              href={recipe.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="bg-blue-500 text-white px-3 py-1 rounded">
+                View
+              </button>
+            </a>
           </div>
         </div>
       ))}
