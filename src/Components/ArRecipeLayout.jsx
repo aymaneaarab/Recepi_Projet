@@ -1,7 +1,7 @@
 import { Button, Modal } from "antd";
 import toast, { Toaster } from "react-hot-toast";
-
 import { useState } from "react";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 import { CiBookmark } from "react-icons/ci"; //bookmark vide
 import { FaBookmark } from "react-icons/fa"; // bookmark with color
 // import Recepi from "../Test/recepi.png";
@@ -248,7 +248,6 @@ function RecipeBoard({
     Array.isArray(data) &&
     data.filter((d) => d?.recipe?.recipe_id === selectedrecipe);
   // console.log("test",filtredata) ;
-  const [added, setaded] = useState(false);
   useEffect(() => {
     async function recipeselectedfetch() {
       const res = await fetch("http://localhost:9000/recipes")
@@ -258,33 +257,51 @@ function RecipeBoard({
     recipeselectedfetch();
   }, [selectedrecipe]);
 
+  //
+const [isAdded,setIsAdedd]=useState(false);
+  
+  //
   const newbookmark = {
     title: filtredata[0]?.recipe?.title,
     image_url: filtredata[0]?.recipe?.image_url,
   };
   function recipeboardaddbtn(e) {
     e.preventDefault();
-    // toast.success(
-    //   "تمت الاضافة بنجاح",
-    //   {
-    //     position: "bottom-right",
-    //   },
-    //   {
-    //     duration: 10000,
-    //   }
-    // );
+    toast.success(
+      "تمت الاضافة بنجاح",
+      {
+        position: "bottom-right",
+      },
+      {
+        duration: 3000,
+      }
+    );
     addtobookmark(newbookmark);
-    setaded(true);
-    setabierto(!abierto);
+    setIsAdedd(true);
+
+    setTimeout(() => {
+           setIsAdedd(false);}, 3000);
+    // setabierto(!abierto);
   }
-function setadedfalse(){
-  setaded(false)
-}
+  function closetheboard (){
+      setabierto(!abierto);
+
+  }
+
   return (
     <div className=" bg-green-300 rounded-xl h-96 text-white overflow-scroll overflow-x-hidden mr-9 p-2">
-      <div>
+      <div> 
+     
         {selectedrecipe && filtredata && abierto && !bookmarkclicked && (
           <div>
+            <div className="top-0 left-0">
+<button onClick={closetheboard}>
+<IoIosCloseCircleOutline className="w-16 h-16" />
+
+</button>
+      </div>
+
+      
             <h1>{filtredata[0]?.recipe?.title}</h1>
             <img src={filtredata[0]?.recipe?.image_url} alt="" />
             <span>
@@ -295,17 +312,19 @@ function setadedfalse(){
                 ))}
               </ul>
             </span>
-            <div>
+            <div className="addToBookmarksDiv">
               <button
                 className="bg-green-500 p-4"
                 onClick={(e) => recipeboardaddbtn(e)}
               >
                 اضافة للمفضلة
               </button>
-            
-            {
-              added && <AddSucceful added={added} setaded={setadedfalse}/>
-            }
+              {isAdded &&
+               <Toaster position="bottom-right" reverseOrder={false}
+
+               toastOptions={{
+                duration: 3000} }/>
+                 }
             </div>
           </div>
         )}
@@ -323,7 +342,8 @@ function setadedfalse(){
                 key={i}
                 className="flex border  border-b-1  bg-transparent gap-3 p-9"
               >
-                {console.log("test object structure b", b)}
+                {/* {console.log("test object structure b", b)} */}
+                
                 <img
                   src={b?.image_url}
                   alt={b?.title}
@@ -341,32 +361,33 @@ function setadedfalse(){
   );
 }
 
+// Component for the notification of add but contains errors
 
-function AddSucceful (added,setaded){
-useEffect(()=>{
-  toast.success(
-    "تمت الاضافة بنجاح",
-    {
-      position: "bottom-right",
-    },
-    {
-      duration: 10000,
-    }
-  );
-setTimeout(()=>{
-  setaded()
-},
-4000
-)
-},[added,setaded])
+// function AddSucceful (added,setaded){
+// useEffect(()=>{
+//   toast.success(
+//     "تمت الاضافة بنجاح",
+//     {
+//       position: "bottom-right",
+//     },
+//     {
+//       duration: 10000,
+//     }
+//   );
+// setTimeout(()=>{
+//   setaded(false)
+// },
+// 4000
+// )
+// },[added,setaded])
 
-return (
-  <Toaster position="bottom-right" reverseOrder={false} 
-              
-  toastOptions={{
-   duration: 10000} }/>
-)
-}
+// return (
+//   <Toaster position="bottom-right" reverseOrder={false}
+
+//   toastOptions={{
+//    duration: 10000} }/>
+// )
+// }
 
 // that the second test component for showing bookmarks , doesent work
 
