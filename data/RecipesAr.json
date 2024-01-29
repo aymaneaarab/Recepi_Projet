@@ -1496,7 +1496,289 @@
                                                 "title": "طاجين مغربي "
                                               }
                                             }
-                                            
-                                            ]
+                                            ,{
+                                              "recipe": {
+                                                "publisher": "جميع الوصفات",
+                                                "ingredients": [
+                                                  "2 كوب عدس أحمر",
+                                                  "بصلة كبيرة، مقطعة إلى مكعبات",
+                                                  "ملعقة طعام زيت نباتي",
+                                                  "ملعقتان كبيرتان من معجون الكاري",
+                                                  "ملعقة طعام من مسحوق الكاري",
+                                                  "ملعقة صغيرة من الكركم المطحون",
+                                                  "ملعقة صغيرة من الكمون المطحون",
+                                                  "ملعقة صغيرة من مسحوق الفلفل الحار",
+                                                  "ملعقة صغيرة من الملح",
+                                                  "ملعقة صغيرة من السكر الأبيض",
+                                                  "ملعقة صغيرة من الثوم المفروم",
+                                                  "ملعقة صغيرة من جذر الزنجبيل المفروم",
+                                                  "علبة واحدة (14.25 أونصة) من صلصة الطماطم الكاملة"
+                                                ],
+                                                "source_url": "http://allrecipes.com/Recipe/Red-Lentil-Curry/Detail.aspx",
+                                                "recipe_id": "26417",
+                                                "image_url": "http://forkify-api.herokuapp.com/images/490284baac.jpg",
+                                                "social_rank": 99.99999999997735,
+                                                "publisher_url": "http://allrecipes.com",
+                                                "title": "كاري العدس الأحمر"
+                                              }
+                                            }
+,{
+  "recipe": {
+    "publisher": "101 كتاب الطهي",
+    "ingredients": [
+      "2 كوب / 14 أونصة / 400 غرام عدس أحمر مقسم، تم فرزه وشطفه جيدًا",
+      "ملعقة طعام كركم",
+      "4 ملاعق كبيرة زبدة غير مملحة",
+      "ملح بحري ناعم",
+      "بصلة كبيرة / حوالي 2 كوب، مقطعة إلى مكعبات",
+      "2 ملعقة صغيرة كمون ناعم",
+      "1 1/2 ملعقة صغيرة حبوب خردل صفراء",
+      "كوب من الكزبرة المفرومة",
+      "عصير ثلاث ليمونات، أو حسب الذوق",
+      "حزمة كبيرة من أوراق السبانخ، مفرومة",
+      "الكثير من الأرز البني المطهو (دافئ)، للتقديم",
+      "الكثير من زبادي جريك العادي، للتقديم"
+    ],
+    "source_url": "http://www.101cookbooks.com/archives/red-lentil-soup-with-lemon-recipe.html",
+    "recipe_id": "47868",
+    "image_url": "http://forkify-api.herokuapp.com/images/red_lentil_soup_2011a924.jpg",
+    "social_rank": 99.99999999663922,
+    "publisher_url": "http://www.101cookbooks.com",
+    "title": "شوربة العدس الأحمر مع الليمون"
+  }
+}
+,{
+  "recipe": {
+    "publisher": "Real Simple",
+    "ingredients": [
+      "ملعقة طعام زيت زيتون",
+      "4 كراث (الأجزاء البيضاء والخضراء الفاتحة)، مقطعة إلى شرائح رقيقة بسمك 1/4 إنش",
+      "علبة طماطم كاملة بوزن 28 أونصة، مصفاة",
+      "2 بطاطس حلوة، مقشرة ومقطعة إلى قطع بسمك 1/2 إنش",
+      "زملة كرنب، تم إزالة السيقان السميكة وتقطيع الأوراق إلى شرائح بسمك 1/2 إنش",
+      "1/2 كوب عدس بني",
+      "ملعقة طعام طرية طازجة",
+      "1/4 كوب ملح كوشير وفلفل أسود"
+    ],
+    "source_url": "http://www.realsimple.com/food-recipes/browse-all-recipes/winter-lentil-soup-10000001151425/index.html",
+    "recipe_id": "38280",
+    "image_url": "http://forkify-api.herokuapp.com/images/winterlentilsoup_300f5f6a9b6.jpg",
+    "social_rank": 99.99999991732636,
+    "publisher_url": "http://realsimple.com",
+    "title": "شوربة العدس الشتوية"
+  }
+}
+,{
+  "recipe": {
+  "publisher": "101 Cookbooks",
+  "ingredients": [
+  "3 cups cooked black lentils",
+  "4 large eggs",
+  "1/2 teaspoon fine-grain sea salt",
+  "1 onion, finely chopped",
+  "1 cup toasted fine (whole-grain) bread crumbs",
+  "1 tablespoon extra-virgin olive oil (or clarified butter)"
+  ],
+  "source_url": "http://www.101cookbooks.com/archives/vegetarian-lentil-burgers-recipe.html",
+  "recipe_id": "48053",
+  "image_url": "http://forkify-api.herokuapp.com/images/lentilburgerrecipe_07405f.jpg",
+  "social_rank": 99.99999031231295,
+  "publisher_url": "http://www.101cookbooks.com",
+  "title": "Vegetarian Lentil Burgers"
+  }
+  } ,{
+    "recipe": {
+      "publisher": "Simply Recipes",
+      "ingredients": [
+        "1 كوب عدس أحمر (يمكن استخدام عدس برتقالي أيضًا)",
+        "3 أكواب ماء",
+        "3 طماطم خوخ",
+        "2 ملاعق صغيرة من زيت العنب أو الخضروات أو زيت الكانولا أو زيت آخر مناسب للحرارة العالية",
+        "1/2 كوب بصل أبيض أو أصفر، مفرومة بشكل دقيق",
+        "2 فصوص ثوم متوسطة، مفرومة بشكل دقيق وصنعت إلى عجينة*",
+        "2 ملعقة صغيرة من مزيج البهارات البنغالي الخمسة (بانش فورون) أو 1/2 ملعقة صغيرة من بذور السمسم الأسود (أو الأبيض)، و1/2 ملعقة صغيرة من بذور الكمون، و1/2 ملعقة صغيرة من بذور الشمر، و1/2 ملعقة صغيرة من بذور الخردل، و (إذا كانت متاحة) 1/2 ملعقة صغيرة من بذور الحلبة",
+        "ورقة غار",
+        "1 ملعقة صغيرة من الكركم",
+        "1 ملعقة صغيرة من ملح الكوشير بالإضافة إلى المزيد حسب الذوق",
+        "1 ليمون، معصور (يعادل حوالي 2 ملعقة كبيرة من عصير الليمون الطازج)",
+        "8 نغمات من الكزبرة، منزوعة السيقان ومفرومة",
+        "أرز باسماتي مطهو، اختياري"
+      ],
+      "source_url": "http://www.simplyrecipes.com/recipes/red_lentil_dal/",
+      "recipe_id": "36818",
+      "image_url": "http://forkify-api.herokuapp.com/images/redlentildal300x20070170412.jpg",
+      "social_rank": 99.99844814305725,
+      "publisher_url": "http://simplyrecipes.com",
+      "title": "عدس أحمر دال"
+    }
+  }
+,{
+  "recipe": {
+    "publisher": "Two Peas and Their Pod",
+    "ingredients": [
+      "4 موزات كبيرة جداً وجهازها ناعم",
+      "2 ملاعق كبيرة زبدة الفول السوداني"
+    ],
+    "source_url": "http://www.twopeasandtheirpod.com/two-ingredient-banana-peanut-butter-ice-cream/",
+    "recipe_id": "54489",
+    "image_url": "http://forkify-api.herokuapp.com/images/bananapeanutbuttericecream5c16d.jpg",
+    "social_rank": 100,
+    "publisher_url": "http://www.twopeasandtheirpod.com",
+    "title": "آيس كريم الموز وزبدة الفول السوداني بمكونين"
+  }
+}
+                                              
+ ,{
+  "recipe": {
+    "publisher": "Closet Cooking",
+    "ingredients": [
+      "1 و 3/4 كوب طحين",
+      "1 ملعقة صغيرة بيكنج بودر",
+      "1/2 ملعقة صغيرة صودا الخبز",
+      "1/2 ملعقة صغيرة ملح",
+      "1/2 كوب سكر بني",
+      "3 موزات كبيرة ناضجة",
+      "2 بيض",
+      "1 ملعقة صغيرة مستخلص الفانيليا",
+      "1/2 كوب زبادي يوناني",
+      "1 كوب فراولة، مقطعة"
+    ],
+    "source_url": "http://www.closetcooking.com/2012/07/strawberry-greek-yogurt-banana-bread.html",
+    "recipe_id": "35606",
+    "image_url": "http://forkify-api.herokuapp.com/images/Greek2BYogurt2BStrawberry2BBanana2BBread2B5002B33932855f563.jpg",
+    "social_rank": 99.99999999995399,
+    "publisher_url": "http://closetcooking.com",
+    "title": "خبز الموز بالفراولة وزبادي اليونان"
+  }
+} ,{
+  "recipe": {
+    "publisher": "Two Peas and Their Pod",
+    "ingredients": [
+      "3 موزات كبيرة جدًا، مقشرة",
+      "1/2 كوب زبدة الفول السوداني الناعمة الطبيعية",
+      "ملعقة كبيرة زيت جوز الهند، مُسخنة قليلاً ولكن لا تكون ذائبة",
+      "2 ملاعق كبيرة نكتار الآجاڤي",
+      "ملعقة صغيرة مستخلص الفانيليا",
+      "2 ونصف كوب شوفان خالي من الجلوتين",
+      "ملعقة صغيرة بيكنج بودر",
+      "1/4 ملعقة صغيرة قرفة مطحونة",
+      "1/4 ملعقة صغيرة ملح البحر",
+      "3/4 كوب رقائق الشوكولاتة النباتية"
+    ],
+    "source_url": "http://www.twopeasandtheirpod.com/gluten-free-vegan-banana-peanut-butter-chocolate-chip-cookies/",
+    "recipe_id": "ed9409",
+    "image_url": "http://forkify-api.herokuapp.com/images/BananaPeanutButterChocolateChipCookies13e87.jpg",
+    "social_rank": 99.99999999081042,
+    "publisher_url": "http://www.twopeasandtheirpod.com",
+    "title": "كوكيز الموز وزبدة الفول السوداني ورقائق الشوكولاتة النباتية خالية من الجلوتين ونباتية"
+  }
+}
+,{
+  "recipe": {
+    "publisher": "Simply Recipes",
+    "ingredients": [
+      "1/2 كوب زبدة غير مملحة، في درجة حرارة الغرفة",
+      "1 كوب سكر",
+      "1 بيضة، في درجة حرارة الغرفة",
+      "1 كوب موز مهروس (حوالي 2 موزة كبيرة)",
+      "1 ملعقة صغيرة بيكربونات الصودا",
+      "2 كوب طحين",
+      "رشة ملح",
+      "1/2 ملعقة صغيرة قرفة مطحونة",
+      "1/2 ملعقة صغيرة جلد الجوز أو جوز الطيب المطحون",
+      "1/2 ملعقة صغيرة قرنفل مطحون",
+      "1 كوب من البقان (يمكن استخدام الجوز أو رقائق الشوكولاتة كبديل)\n"
+    ],
+    "source_url": "http://www.simplyrecipes.com/recipes/banana_cookies/",
+    "recipe_id": "35761",
+    "image_url": "http://forkify-api.herokuapp.com/images/bananacookies300x200fd32417f.jpg",
+    "social_rank": 99.99999998635215,
+    "publisher_url": "http://simplyrecipes.com",
+    "title": "كوكيز الموز"
+  }
+}
+,{
+  "recipe": {
+    "publisher": "Real Simple",
+    "ingredients": [
+      "3/4 كوب أناناس طازج مفروم",
+      "1/2 كوب ثلج",
+      "1/3 كوب عصير برتقال طازج",
+      "1/4 كوب جزر مفروم",
+      "1/2 موزة\n"
+    ],
+    "source_url": "http://www.realsimple.com/food-recipes/browse-all-recipes/carrot-pineapple-smoothie-00000000050727/index.html",
+    "recipe_id": "37496",
+    "image_url": "http://forkify-api.herokuapp.com/images/carrotsmoothie_30014096fc8.jpg",
+    "social_rank": 99.9999999820438,
+    "publisher_url": "http://realsimple.com",
+    "title": "عصير الجزر والأناناس"
+  }
+}
+,{
+  "recipe": {
+    "publisher": "The Pioneer Woman",
+    "ingredients": [
+      "للكرات اللحم",
+      "1-1/2 رطل لحم بقر مفروم",
+      "3/4 كوب شوفان",
+      "1 كوب حليب",
+      "3 ملاعق طعام بصل مفروم جداً",
+      "1-1/2 ملعقة صغيرة ملح",
+      "كمية كبيرة من الفلفل الأسود المطحون، حسب الذوق",
+      "_____",
+      "لطهي الكرات اللحم",
+      "1 كوب طحين متعدد الاستخدامات (لتغليف الكرات اللحم المجمدة)",
+      "زيت كانولا",
+      "_____",
+      "للصلصة",
+      "1 كوب كاتشب",
+      "2 ملاعق طعام سكر",
+      "3 ملاعق طعام خل",
+      "2 ملاعق طعام صلصة وورسترشير",
+      "4 ملاعق طعام (إلى 6 ملاعق طعام) بصل",
+      "قليل من صلصة تاباسكو"
+    ],
+    "source_url": "http://thepioneerwoman.com/cooking/2009/03/bbq-meatballs-comfort-food-to-the-max/",
+    "recipe_id": "47247",
+    "image_url": "http://forkify-api.herokuapp.com/images/3385764631_66b792bc72849b.jpg",
+    "social_rank": 99.99752537965341,
+    "publisher_url": "http://thepioneerwoman.com",
+    "title": "كرات اللحم بصلصة الباربيكيو"
+  }
+}
+,{
+  "recipe": {
+    "publisher": "All Recipes",
+    "ingredients": [
+      "1 ملعقة زيت زيتون",
+      "1 بصل أصفر، مقطع صغيراً",
+      "4 فصوص ثوم، مفرومة",
+      "2 ملعقة صغيرة كمون أرضي",
+      "عود قرفة بطول 4 إنش",
+      "ملح وفلفل حسب الذوق",
+      "1 باوند من الكوسة العسلية - مقشرة ومزالة البذور، مقطعة إلى مكعبات بطول 2 إنش",
+      "4 بطاطا حمراء كبيرة، مقطعة إلى مكعبات بطول 2 إنش",
+      "2 كوب من مرق الخضار",
+      "1 علبة (15 أونصة) من حبوب الحمص، مصفاة",
+      "1 علبة (14.5 أونصة) من الطماطم المفرومة مع عصيرها",
+      "1 كوب من الزيتون الأخضر المملح والمحفوظ",
+      "نصف ملعقة صغيرة من قشر الليمون",
+      "1 و3/4 كوب من الماء",
+      "صندوق (10 أونصة) من الكسكس غير المطهو",
+      "6 ملاعق كبيرة من الزبادي الطبيعي",
+      "6 ملاعق كبيرة من الكزبرة الطازجة المفرومة"
+    ],
+    "source_url": "",
+    "recipe_id": "123456786n",
+    "image_url": "https://www.tasteofhome.com/wp-content/uploads/2018/01/Moroccan-Vegetarian-Stew_EXPS_FT20_49877_F_0108_1-5.jpg",
+    "social_rank": 51.06479357278984,
+    "publisher_url": "#",
+    "title": "طاجين نباتي مغربي"
+  }
+}
+
+
+                                           ]
   }
 }
