@@ -1,14 +1,13 @@
-import { Button, Modal } from "antd";
-import toast, { Toaster } from "react-hot-toast";
-import { useId, useState } from "react";
-import { IoIosCloseCircleOutline } from "react-icons/io";
+import { Button, Modal } from "antd"; // adding to database button and form
+import toast, { Toaster } from "react-hot-toast";  // adding to bookmark notification
+import {  useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
+
+import { IoIosCloseCircleOutline } from "react-icons/io"; // icon of closing button 
 import { CiBookmark } from "react-icons/ci"; //bookmark vide
 import { FaBookmark } from "react-icons/fa"; // bookmark with color
-// import Recepi from "../Test/recepi.png";
 import { useEffect } from "react";
-// import { Alert } from "@mui/material";
-// const key = "cbed10cacb9c81e2a7e48b59678ca090	";
-// const app_id = "b90b16e8";
+import axios from "axios";
 
 export default function ArRecipe() {
   //state for block of detaille recipe if is opened
@@ -124,7 +123,7 @@ function Header({ query, setquery, clickbookmark, bookmarkclicked,AddRecipe }) {
           recipeData.ingredient10,
         ],
         source_url: "",
-        recipe_id: "",
+        recipe_id:uuidv4(),
         image_url: recipeData.imageUrl,
 
         social_rank: 100.0,
@@ -132,10 +131,29 @@ function Header({ query, setquery, clickbookmark, bookmarkclicked,AddRecipe }) {
         title: recipeData.recipeName,
       },
     };
-    AddRecipe(newRecipe);
+
+    // fetch("http://localhost:9000/recipes",{
+    //   method:"POST",
+    //   headers :{
+    //     "Content-Type":"application/json"
+    //   },
+    //   body: JSON.stringify(newRecipe)
+    // }).then(repoonse=>repoonse.json()).then(addedrec=>{console.log("new recipe added :",addedrec.recipe)}).catch(err=>console.error('error adding new recipe',err));
+
+   
+   
+   
+   
+   
+    // AddRecipe(newRecipe); actually i used this to just test the adding to array of data it works with errors
+    
+    axios.post('http://localhost:9000/recipes',newRecipe).then(res=>{
+      alert('added succesfully');
+   
+      
+    }).catch(err=>console.log("filed to add a new recipe check the console to see the error",err))
     setOpen(false)
   }
-
   return (
     <div className="bg-green-200	flex justify-between items-center p-5 rounded text-white content-center   ">
       <div className="flex cursor-pointer" onClick={clickbookmark}>
