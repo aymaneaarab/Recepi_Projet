@@ -160,7 +160,7 @@ function Header({ query, setquery, clickbookmark, bookmarkclicked,AddRecipe }) {
           title="اضافة وصفة جديدة للقائمة"
           centered
           open={open}
-          onOk={() =>handleAddRecipetoData}
+          onOk={() =>handleAddRecipetoData()}
           onCancel={() => setOpen(false)}
           width={1000}
           okButtonProps={{
