@@ -1,6 +1,6 @@
 import { Button, Modal } from "antd";
 import toast, { Toaster } from "react-hot-toast";
-import { useState } from "react";
+import { useId, useState } from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { CiBookmark } from "react-icons/ci"; //bookmark vide
 import { FaBookmark } from "react-icons/fa"; // bookmark with color
@@ -41,6 +41,10 @@ export default function ArRecipe() {
     setbookmarkclicked(!bookmarkclicked);
   }
 
+  function AddTodata(newRec){
+setrecipes((recipes)=>[...recipes,newRec])
+  }
+
   return (
     <div className="bg-green-100 h-screen">
       <Header
@@ -49,6 +53,7 @@ export default function ArRecipe() {
         clickbookmark={clickbookmark}
         bookmarkclicked={bookmarkclicked}
         bookmark={bookmark}
+      AddRecipe={AddTodata}
       />
       <div className="grid grid-cols-3 h-96 gap-9 my-8">
         <RecipeBoard
@@ -72,8 +77,64 @@ export default function ArRecipe() {
   );
 }
 
-function Header({ query, setquery, clickbookmark, bookmarkclicked }) {
+function Header({ query, setquery, clickbookmark, bookmarkclicked,AddRecipe }) {
   const [open, setOpen] = useState(false);
+
+  // the states for inputs to add a recipe into the database
+  const [recipeData, setRecipeData] = useState({
+    recipeName: "",
+    publisher: "",
+    imageUrl: "",
+    ingredient1: "",
+    ingredient2: "",
+    ingredient3: "",
+    ingredient4: "",
+    ingredient5: "",
+    ingredient6: "",
+    ingredient7: "",
+    ingredient8: "",
+    ingredient9: "",
+    ingredient10: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setRecipeData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  // function for adding the recipe into the database
+  function handleAddRecipetoData() {
+    const newRecipe = {
+      recipe: {
+        publisher: recipeData.publisher,
+        ingredients: [
+          recipeData.ingredient1,
+          recipeData.ingredient2,
+          recipeData.ingredient3,
+          recipeData.ingredient3,
+          recipeData.ingredient4,
+          recipeData.ingredient5,
+          recipeData.ingredient6,
+          recipeData.ingredient7,
+          recipeData.ingredient8,
+          recipeData.ingredient9,
+          recipeData.ingredient10,
+        ],
+        source_url: "",
+        recipe_id: "",
+        image_url: recipeData.imageUrl,
+
+        social_rank: 100.0,
+        publisher_url: "#",
+        title: recipeData.recipeName,
+      },
+    };
+    AddRecipe(newRecipe);
+    setOpen(false)
+  }
 
   return (
     <div className="bg-green-200	flex justify-between items-center p-5 rounded text-white content-center   ">
@@ -99,7 +160,7 @@ function Header({ query, setquery, clickbookmark, bookmarkclicked }) {
           title="اضافة وصفة جديدة للقائمة"
           centered
           open={open}
-          onOk={() => setOpen(false)}
+          onOk={() =>handleAddRecipetoData}
           onCancel={() => setOpen(false)}
           width={1000}
           okButtonProps={{
@@ -110,33 +171,45 @@ function Header({ query, setquery, clickbookmark, bookmarkclicked }) {
         >
           <form>
             <div className="p-11">
-              <input type="text" />
-              <label>اسم الوصفة</label>
-              <input type="text" />
-              <label>ناشر الوصفة</label>
-              <input type="text" />
-              <label>رابط صورة الوصفة</label>
-              <input type="text" />
-              <label>المكون الاول</label>
+              <label>
+                اسم الوصفة:
+                <input
+                  type="text"
+                  name="recipeName"
+                  value={recipeData.recipeName}
+                  onChange={handleInputChange}
+                />
+              </label>
+              <label>
+                ناشر الوصفة:
+                <input
+                  type="text"
+                  name="publisher"
+                  value={recipeData.publisher}
+                  onChange={handleInputChange}
+                />
+              </label>
+              <label>
+                رابط صورة الوصفة:
+                <input
+                  type="text"
+                  name="imageUrl"
+                  value={recipeData.imageUrl}
+                  onChange={handleInputChange}
+                />
+              </label>
 
-              <input type="text" />
-              <label>المكون الثاني</label>
-              <input type="text" />
-              <label>المكون الثالث</label>
-              <input type="text" />
-              <label>المكون الرابع</label>
-              <input type="text" />
-              <label>المكون الخامس</label>
-              <input type="text" />
-              <label>المكون السادس</label>
-              <input type="text" />
-              <label>المكون السابع</label>
-              <input type="text" />
-              <label>المكون الثامن</label>
-              <input type="text" />
-              <label>المكون التاسع</label>
-              <input type="text" />
-              <label>المكون العاشر</label>
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((index) => (
+                <>
+                  <label>المكون {index}:</label>
+                  <input
+                    type="text"
+                    name={`ingredient${index}`}
+                    value={recipeData[`ingredient${index}`]}
+                    onChange={handleInputChange}
+                  />
+                </>
+              ))}
             </div>
           </form>
         </Modal>{" "}
@@ -258,8 +331,8 @@ function RecipeBoard({
   }, [selectedrecipe]);
 
   //
-const [isAdded,setIsAdedd]=useState(false);
-  
+  const [isAdded, setIsAdedd] = useState(false);
+
   //
   const newbookmark = {
     title: filtredata[0]?.recipe?.title,
@@ -280,28 +353,25 @@ const [isAdded,setIsAdedd]=useState(false);
     setIsAdedd(true);
 
     setTimeout(() => {
-           setIsAdedd(false);}, 3000);
+      setIsAdedd(false);
+    }, 3000);
     // setabierto(!abierto);
   }
-  function closetheboard (){
-      setabierto(!abierto);
-
+  function closetheboard() {
+    setabierto(!abierto);
   }
 
   return (
     <div className=" bg-green-300 rounded-xl h-96 text-white overflow-scroll overflow-x-hidden mr-9 p-2">
-      <div> 
-     
+      <div>
         {selectedrecipe && filtredata && abierto && !bookmarkclicked && (
           <div>
             <div className="top-0 left-0">
-<button onClick={closetheboard}>
-<IoIosCloseCircleOutline className="w-16 h-16" />
+              <button onClick={closetheboard}>
+                <IoIosCloseCircleOutline className="w-16 h-16" />
+              </button>
+            </div>
 
-</button>
-      </div>
-
-      
             <h1>{filtredata[0]?.recipe?.title}</h1>
             <img src={filtredata[0]?.recipe?.image_url} alt="" />
             <span>
@@ -319,12 +389,15 @@ const [isAdded,setIsAdedd]=useState(false);
               >
                 اضافة للمفضلة
               </button>
-              {isAdded &&
-               <Toaster position="bottom-right" reverseOrder={false}
-
-               toastOptions={{
-                duration: 3000} }/>
-                 }
+              {isAdded && (
+                <Toaster
+                  position="bottom-right"
+                  reverseOrder={false}
+                  toastOptions={{
+                    duration: 3000,
+                  }}
+                />
+              )}
             </div>
           </div>
         )}
@@ -343,7 +416,7 @@ const [isAdded,setIsAdedd]=useState(false);
                 className="flex border  border-b-1  bg-transparent gap-3 p-9"
               >
                 {/* {console.log("test object structure b", b)} */}
-                
+
                 <img
                   src={b?.image_url}
                   alt={b?.title}
