@@ -272,7 +272,7 @@ function RecipeList({ query, recipes, setrecipes, selectrecipe, setabierto }) {
           throw new Error("Recipe Not found");
         }
 
-        setrecipes(data.recipes);
+        setrecipes(data);
         // console.log("recipes", data.recipes);
       } catch (err) {
         console.log(err);
@@ -297,14 +297,14 @@ function RecipeList({ query, recipes, setrecipes, selectrecipe, setabierto }) {
     <div className=" bg-green-300 rounded-xl h-96 text-white overflow-auto  ml-16 p-2 ">
       {recipes?.map((recipe, i) => (
         <div
-          key={i}
-          className=" flex border  border-b-1  bg-transparent gap-3 p-9 "
-          onClick={() => {
-            selectrecipe(recipe.recipe.recipe_id);
-            setabierto(true);
-          }}
+        key={i}
+        className=" flex border  border-b-1  bg-transparent gap-3 p-9 "
+        onClick={() => {
+          selectrecipe(recipe.recipe.recipe_id);
+          setabierto(true);
+        }}
         >
-          {/* {console.log(recipe)} */}
+          {console.log(recipe)}
           <img
             src={recipe.recipe.image_url}
             alt={recipe.recipe.title}
