@@ -1,4 +1,4 @@
-import { Button, Modal } from "antd"; // adding to database button and form
+import { Button, Modal,message } from "antd"; // adding to database button and form
 import toast, { Toaster } from "react-hot-toast";  // adding to bookmark notification
 import {  useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
@@ -78,6 +78,8 @@ setrecipes((recipes)=>[...recipes,newRec])
 
 function Header({ query, setquery, clickbookmark, bookmarkclicked,AddRecipe }) {
   const [open, setOpen] = useState(false);
+  
+  const [messageApi, contextHolder] = message.useMessage();
 
   // the states for inputs to add a recipe into the database
   const [recipeData, setRecipeData] = useState({
@@ -148,10 +150,15 @@ function Header({ query, setquery, clickbookmark, bookmarkclicked,AddRecipe }) {
     // AddRecipe(newRecipe); actually i used this to just test the adding to array of data it works with errors
     
     axios.post('http://localhost:9000/recipes',newRecipe).then(res=>{
-      alert('added succesfully');
+      // alert('added succesfully');
    
       
     }).catch(err=>console.log("filed to add a new recipe check the console to see the error",err))
+    messageApi.open({
+      type: 'success',
+      content: 'تمت الاضافة بنجاح',
+      duration: 2,
+    });
     setOpen(false)
   }
   return (
@@ -187,6 +194,8 @@ function Header({ query, setquery, clickbookmark, bookmarkclicked,AddRecipe }) {
           okText="اضافة"
           cancelText="الغاء"
         >
+              {contextHolder}
+
           <form>
             <div className="p-11">
               <label>
