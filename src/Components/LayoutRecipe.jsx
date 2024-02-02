@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { CiBookmark } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa";
-import { Alert } from "@mui/material";
 
 const key = "cbed10cacb9c81e2a7e48b59678ca090";
 const app_id = "b90b16e8";

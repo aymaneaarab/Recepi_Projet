@@ -276,7 +276,7 @@ function RecipeList({ query, recipes, setrecipes, selectrecipe, setabierto }) {
         }
 
         const data = await res.json();
-        // console.log("type de chainement d api", data);
+        console.log("type de chainement d api", data);
         if (data.response === false) {
           throw new Error("Recipe Not found");
         }
@@ -347,18 +347,19 @@ function RecipeBoard({
   const filtredata =
     Array.isArray(data) &&
     data.filter((d) => d?.recipe?.recipe_id === selectedrecipe);
-  // console.log("test",filtredata) ;
+  // console.log("test",filtredata)
   useEffect(() => {
     async function recipeselectedfetch() {
       const res = await fetch("http://localhost:9000/recipes")
         .then((res) => res.json())
-        .then((res) => setdata(res.recipes));
+        .then((res) => setdata(res));
     }
     recipeselectedfetch();
   }, [selectedrecipe]);
 
   //
   const [isAdded, setIsAdedd] = useState(false);
+  const [messageApi, contextHolder] = message.useMessage();
 
   //
   const newbookmark = {
@@ -367,15 +368,23 @@ function RecipeBoard({
   };
   function recipeboardaddbtn(e) {
     e.preventDefault();
-    toast.success(
-      "تمت الاضافة بنجاح",
-      {
-        position: "bottom-right",
-      },
-      {
-        duration: 3000,
-      }
-    );
+    // toast.success(
+    //   "تمت الاضافة بنجاح",
+    //   {
+    //     position: "bottom-right",
+    //   },
+    //   {
+    //     duration: 3000,
+    //   }
+    // );
+   
+   
+
+    messageApi.open({
+      type: 'success',
+      content: 'تمت الاضافة بنجاح',
+      duration: 2,
+    });
     addtobookmark(newbookmark);
     setIsAdedd(true);
 
@@ -410,21 +419,23 @@ function RecipeBoard({
               </ul>
             </span>
             <div className="addToBookmarksDiv">
+              <>
+              {contextHolder}
               <button
                 className="bg-green-500 p-4"
                 onClick={(e) => recipeboardaddbtn(e)}
-              >
+                >
                 اضافة للمفضلة
               </button>
-              {isAdded && (
-                <Toaster
-                  position="bottom-right"
+                  </>
+              {/* {isAdded && (
+                <Toaster position="bottom-right"
                   reverseOrder={false}
                   toastOptions={{
                     duration: 3000,
                   }}
                 />
-              )}
+              )} */}
             </div>
           </div>
         )}
@@ -442,7 +453,7 @@ function RecipeBoard({
                 key={i}
                 className="flex border  border-b-1  bg-transparent gap-3 p-9"
               >
-                {/* {console.log("test object structure b", b)} */}
+                {console.log("test object structure b", b)}
 
                 <img
                   src={b?.image_url}
