@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { CiBookmark } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 
 export function Header({
   query,
@@ -184,13 +185,16 @@ export function Header({
           onChange={(e) => setquery(e.target.value)}
         />
       </div>
+          <NavLink to="/">
       <div className="flex">
         <span className="text-xl mx-3">🥦</span>
         <div className="font-semibold tracking-widest font-mono justify-self-end">
           {/* <img src={Recepi} alt="Recepi Logo" height="20%" width="20%" className="ml-36 lg:ml-96 justify-self-start	" /> */}
-          RECEPI
+            
+            RECEPI
         </div>
       </div>{" "}
+        </NavLink>
     </div>
   );
 }
