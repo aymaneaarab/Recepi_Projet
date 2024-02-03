@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { CiBookmark } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const key = "cbed10cacb9c81e2a7e48b59678ca090";
 const app_id = "b90b16e8";
@@ -8,7 +10,6 @@ const app_id = "b90b16e8";
 export default function LayoutRecipe() {
   const [recipes, setRecipes] = useState([]);
   const [selectedId, setSelectedId] = useState("");
-  const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [query, setQuery] = useState("");
   const [showBookmarkList, setShowBookmarkList] = useState(false);
   const [bookmarks, setBookmarks] = useState([]);
@@ -18,12 +19,38 @@ export default function LayoutRecipe() {
   }
 
   function addToBookmarkList(recipe) {
-    setBookmarks((prevBookmarks) => [...prevBookmarks, recipe]);
+    const isRecipeInBookmarks = bookmarks.some((bookmark) => bookmark.label === recipe.label);
+
+    if (!isRecipeInBookmarks) {
+      setBookmarks((prevBookmarks) => [...prevBookmarks, recipe]);
+
+      // Display a success message using toast
+      toast.success(`Recipe "${recipe.label}" added to bookmarks!`, {
+        position: "top-right",
+        autoClose: 3000, // 3 seconds
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      // Display a message indicating the recipe is already in bookmarks
+      toast.warn(`Recipe "${recipe.label}" is already in bookmarks.`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   }
 
   function handleViewBookmarksClick() {
     setShowBookmarkList(!showBookmarkList);
-    setSelectedId(""); // Reset selected recipe ID when switching views
+    setSelectedId("");
   }
 
   useEffect(() => {
@@ -66,43 +93,23 @@ export default function LayoutRecipe() {
 
   return (
     <div className="bg-green-100 h-screen">
-      <Header
-        query={query}
-        setQuery={setQuery}
-        handleViewBookmarksClick={handleViewBookmarksClick}
-      />
+      <Header query={query} setQuery={setQuery} handleViewBookmarksClick={handleViewBookmarksClick} />
 
       <div className="grid grid-cols-3 h-96 gap-9 my-8">
-        <RecipeList
-          query={query}
-          recipes={recipes}
-          setRecipes={setRecipes}
-          selectRecipe={selectRecipe}
-        />
+        <RecipeList query={query} recipes={recipes} setRecipes={setRecipes} selectRecipe={selectRecipe} />
 
-        {showBookmarkList && (
-          <div className="bg-green-300 rounded-xl h-96 text-white overflow-auto ml-16 p-2">
+        <div className="h-auto w-1 bg-slate-400 justify-self-center"></div>
+
+        {showBookmarkList ? (
+          <div className="bg-green-300 rounded-xl h-96 text-white overflow-scroll overflow-x-hidden mr-9 p-2">
             <BookmarkList bookmarks={bookmarks} setBookmarks={setBookmarks} />
           </div>
-        )}
-
-        {!showBookmarkList && (
-          <>
-            <div className="h-auto w-1 bg-slate-400 justify-self-center"></div>
-
-            <RecipeBoard
-              selectedRecipeId={selectedId}
-              addToBookmarkList={addToBookmarkList}
-              setSelectedRecipe={setSelectedRecipe}
-            />
-
-            <Footer
-              addToBookmarkList={() => addToBookmarkList(selectedRecipe)}
-              selectedRecipe={selectedRecipe}
-            />
-          </>
+        ) : (
+          <RecipeBoard selectedRecipeId={selectedId} addToBookmarkList={addToBookmarkList} />
         )}
       </div>
+
+      <ToastContainer />
     </div>
   );
 }
@@ -267,19 +274,6 @@ function RecipeBoard({ selectedRecipeId, addToBookmarkList, setSelectedRecipe })
   );
 }
 
-function Footer({ addToBookmarkList, selectedRecipe }) {
-  return (
-    <div className="col-span-3 flex justify-center mt-4">
-      <button
-        className="bg-green-500 text-white px-4 py-2 rounded"
-        onClick={() => addToBookmarkList(selectedRecipe)}
-      >
-        Select
-      </button>
-    </div>
-  );
-}
-
 function BookmarkList({ bookmarks, setBookmarks }) {
   const handleRemoveClick = (index) => {
     const updatedBookmarks = [...bookmarks];
@@ -288,7 +282,7 @@ function BookmarkList({ bookmarks, setBookmarks }) {
   };
 
   return (
-    <div className="bg-green-300 rounded-xl h-96 text-white overflow-auto p-2">
+    <div className="bg-green-300 rounded-xl h-96 text-white p-2">
       {bookmarks.map((recipe, i) => (
         <div key={i} className="flex border border-b-1 bg-transparent gap-2 p-9">
           <img
