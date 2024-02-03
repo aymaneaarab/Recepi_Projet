@@ -1,17 +1,28 @@
-const { Layout } = require("antd");
-const { useState } = require("react")
+import styles from "./Loader.module.css";
+const { useState } = require("react");
 
-const withLoaderHOC = (wrappedComponent)=>{
+const withLoaderHOC = (WrappedComponent)=>{
     return (props)=>{
         const [loading,setloading]=useState(true);
         setTimeout(() => {
             setloading(false)
-        }, 3000);
+        }, 5000);
         return (
             <div>
-                {loading ? <p>Loading ...</p> : <Layout/>}
+                {loading ? <Loader/> : <WrappedComponent {...props}/>}
             </div>
         )
     }
 }
 export default withLoaderHOC;
+
+function Loader (){
+    return (
+        <div className="flex">
+
+            <div className={styles.loader}></div>
+           
+        </div>
+
+    )
+}

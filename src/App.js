@@ -12,8 +12,8 @@ function App() {
   return (
   <div>
 
-<LayoutPrincipal/>
-{/* <LayoutwithLoader/> */}
+{/* <LayoutPrincipal/> */}
+<LayoutwithLoader/>
   </div>
 )
 
