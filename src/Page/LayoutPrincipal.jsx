@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import ArRecipe from '../Components/ArRecipeLayout/ArRecipeLayout'
 import LayoutRecipe from '../Components/LayoutRecipe'
 
-export default function Layout() {
+export default function LayoutPrincipal() {
     const Langue = useSelector((state)=>state.Langue.choice)
   return (<div>
 
