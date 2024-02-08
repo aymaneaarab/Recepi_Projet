@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CiBookmark } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -117,10 +118,13 @@ export default function LayoutRecipe() {
 function Header({ query, setQuery, handleViewBookmarksClick }) {
   return (
     <div className="bg-green-200 flex justify-between items-center p-5 rounded text-white content-center">
+     <NavLink to="/" >
+
       <div className="flex">
         <span className="text-xl mx-3">🥦</span>
         <p className="font-semibold tracking-widest font-mono"> RECEPI</p>
       </div>
+     </NavLink>
       <div className="">
         <input
           type="text"

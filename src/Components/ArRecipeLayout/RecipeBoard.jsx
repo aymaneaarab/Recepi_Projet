@@ -66,7 +66,7 @@ export function RecipeBoard({
   }
 
   return (
-    <div className=" bg-green-300 rounded-xl h-96 text-white overflow-scroll overflow-x-hidden mr-9 p-2">
+    <div className=" bg-green-300 rounded-xl h-96 text-white overflow-scroll overflow-x-hidden mx-9 p-2">
       <div>
         {selectedrecipe && filtredata && abierto && !bookmarkclicked && (
           <div>

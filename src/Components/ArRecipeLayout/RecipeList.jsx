@@ -49,7 +49,7 @@ export function RecipeList({
     setabierto(true);
   }
   return (
-    <div className=" bg-green-300 rounded-xl h-96 text-white overflow-auto  ml-16 p-2 ">
+    <div className=" bg-green-300 rounded-xl h-96 text-white overflow-auto  mx-16 p-2 ">
       {recipes?.map((recipe, i) => (
         <div
           key={i}
