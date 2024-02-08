@@ -4,7 +4,6 @@ import { FaBookmark } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { NavLink } from "react-router-dom";
 
 const key = "cbed10cacb9c81e2a7e48b59678ca090";
 const app_id = "b90b16e8";
@@ -126,10 +125,12 @@ function Header({ query, setQuery, showBookmarkList, handleViewBookmarksClick })
 
   return (
     <div className="bg-green-200 flex justify-between items-center p-5 rounded text-white content-center">
+     <NavLink to="/" >
       <div className="flex">
         <span className="text-xl mx-3">🥦</span>
         <p className="font-semibold tracking-widest font-mono"> RECEPI</p>
       </div>
+      </NavLink>
       <div className="">
         <input
           type="text"
