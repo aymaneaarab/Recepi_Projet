@@ -4,6 +4,7 @@ import { FaBookmark } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { NavLink } from "react-router-dom";
 
 const key = "cbed10cacb9c81e2a7e48b59678ca090";
 const app_id = "b90b16e8";
@@ -115,16 +116,20 @@ export default function LayoutRecipe() {
   );
 }
 
-function Header({ query, setQuery, handleViewBookmarksClick }) {
+function Header({ query, setQuery, showBookmarkList, handleViewBookmarksClick }) {
+  const [bookmarkClicked, setBookmarkClicked] = useState(false);
+
+  const clickbookmark = () => {
+    setBookmarkClicked(!bookmarkClicked);
+    handleViewBookmarksClick(); // This will toggle the showBookmarkList state
+  };
+
   return (
     <div className="bg-green-200 flex justify-between items-center p-5 rounded text-white content-center">
-     <NavLink to="/" >
-
       <div className="flex">
         <span className="text-xl mx-3">🥦</span>
         <p className="font-semibold tracking-widest font-mono"> RECEPI</p>
       </div>
-     </NavLink>
       <div className="">
         <input
           type="text"
@@ -135,12 +140,16 @@ function Header({ query, setQuery, handleViewBookmarksClick }) {
         />
       </div>
       <div className="font-semibold">
-        <button
-          className="bg-green-500 text-white px-4 py-2 rounded"
-          onClick={handleViewBookmarksClick}
-        >
-          View Bookmarks
-        </button>
+        <div className="flex cursor-pointer" onClick={clickbookmark}>
+          {!bookmarkClicked ? (
+            <CiBookmark className="bookmark" />
+          ) : (
+            <div>
+              <FaBookmark className="bookmark" />
+            </div>
+          )}
+          <pre>Saved Recipes</pre>
+        </div>
       </div>
     </div>
   );
