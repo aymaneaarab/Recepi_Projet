@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { CiBookmark } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { NavLink } from "react-router-dom";
 
 const key = "cbed10cacb9c81e2a7e48b59678ca090";
 const app_id = "b90b16e8";
@@ -20,7 +20,9 @@ export default function LayoutRecipe() {
   }
 
   function addToBookmarkList(recipe) {
-    const isRecipeInBookmarks = bookmarks.some((bookmark) => bookmark.label === recipe.label);
+    const isRecipeInBookmarks = bookmarks.some(
+      (bookmark) => bookmark.label === recipe.label
+    );
 
     if (!isRecipeInBookmarks) {
       setBookmarks((prevBookmarks) => [...prevBookmarks, recipe]);
@@ -93,16 +95,16 @@ export default function LayoutRecipe() {
   }, [query]);
 
   return (
-    <div className="bg-green-100 h-screen">
+    <div className="bg-gray-100 h-screen">
       <Header query={query} setQuery={setQuery} handleViewBookmarksClick={handleViewBookmarksClick} />
 
-      <div className="grid grid-cols-3 h-96 gap-9 my-8">
+      <div className="grid grid-cols-3 gap-4 h-4/5 mx-auto mt-8 p-4">
         <RecipeList query={query} recipes={recipes} setRecipes={setRecipes} selectRecipe={selectRecipe} />
 
-        <div className="h-auto w-1 bg-slate-400 justify-self-center"></div>
+        <div className="h-full w-1 bg-gray-400 justify-self-center"></div>
 
         {showBookmarkList ? (
-          <div className="bg-green-300 rounded-xl h-96 text-white overflow-scroll overflow-x-hidden mr-9 p-2">
+          <div className="bg-gray-300 rounded-xl text-white overflow-scroll p-4 border border-gray-400">
             <BookmarkList bookmarks={bookmarks} setBookmarks={setBookmarks} />
           </div>
         ) : (
@@ -115,7 +117,7 @@ export default function LayoutRecipe() {
   );
 }
 
-function Header({ query, setQuery, showBookmarkList, handleViewBookmarksClick }) {
+function Header({ query, setQuery, handleViewBookmarksClick }) {
   const [bookmarkClicked, setBookmarkClicked] = useState(false);
 
   const clickbookmark = () => {
@@ -124,17 +126,17 @@ function Header({ query, setQuery, showBookmarkList, handleViewBookmarksClick })
   };
 
   return (
-    <div className="bg-green-200 flex justify-between items-center p-5 rounded text-white content-center">
-     <NavLink to="/" >
-      <div className="flex">
-        <span className="text-xl mx-3">🥦</span>
-        <p className="font-semibold tracking-widest font-mono"> RECEPI</p>
-      </div>
+    <div className="bg-green-600 flex justify-between items-center p-8 rounded text-gray-200"> {/* Increased padding */}
+      <NavLink to="/">
+        <div className="flex">
+          <span className="text-xl mx-3">🥦</span>
+          <p className="font-semibold tracking-widest font-mono"> RECEPI</p>
+        </div>
       </NavLink>
       <div className="">
         <input
           type="text"
-          className="bg-green-300 placeholder-white rounded p-2"
+          className="bg-green-300 placeholder-white rounded p-2 w-40" // Decreased width
           placeholder="Search for a recipe"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -196,23 +198,23 @@ function RecipeList({ query, recipes, setRecipes, selectRecipe }) {
   }, [query, setRecipes]);
 
   return (
-    <div className="bg-green-300 rounded-xl h-96 text-white overflow-auto ml-16 p-2">
+    <div className="bg-gray-100 rounded-xl text-green-600 overflow-auto p-4 border border-gray-400">
       {recipes?.map((recipe, i) => (
         <div
           key={i}
-          className="flex border border-b-1 bg-transparent gap-2 p-9"
+          className="flex border border-b-1 bg-transparent gap-2 p-4 cursor-pointer hover:bg-gray-200"
           onClick={() => selectRecipe(recipe._links.self.href)}
         >
           <img
             src={recipe.recipe.image}
             alt={recipe.recipe.label}
-            height="60px"
-            width="70px"
+            height="80px"
+            width="80px"
             className="rounded"
           />
 
-          <div className="text-white">
-            <h3>{recipe.recipe.label}</h3>
+          <div className="text-green-600">
+            <h3 className="text-lg">{recipe.recipe.label}</h3>
             <span>Author: {recipe.recipe.source}</span>
           </div>
         </div>
@@ -221,7 +223,7 @@ function RecipeList({ query, recipes, setRecipes, selectRecipe }) {
   );
 }
 
-function RecipeBoard({ selectedRecipeId, addToBookmarkList, setSelectedRecipe }) {
+function RecipeBoard({ selectedRecipeId, addToBookmarkList }) {
   const [data, setData] = useState();
 
   useEffect(() => {
@@ -257,18 +259,18 @@ function RecipeBoard({ selectedRecipeId, addToBookmarkList, setSelectedRecipe })
   };
 
   return (
-    <div className="bg-green-300 rounded-xl h-96 text-white overflow-scroll overflow-x-hidden mr-9 p-2">
+    <div className="bg-gray-100 rounded-xl text-green-600 overflow-scroll p-4 border border-gray-400">
       {data && (
         <div>
-          <img src={data?.image} alt={data?.label} className="rounded" />
+          <img src={data?.image} alt={data?.label} className="rounded w-full" />
 
           <div className="mt-2">
-            <h2>{data?.label}</h2>
+            <h2 className="text-xl">{data?.label}</h2>
             <p>{data?.description}</p>
           </div>
 
           <div className="mt-4">
-            <h3>Ingredients:</h3>
+            <h3 className="text-lg">Ingredients:</h3>
             <ul>
               {data?.ingredients.map((ingredient, index) => (
                 <li key={index}>{ingredient.text}</li>
@@ -277,10 +279,10 @@ function RecipeBoard({ selectedRecipeId, addToBookmarkList, setSelectedRecipe })
           </div>
 
           <button
-            className="bg-green-500 text-white px-4 py-2 rounded mt-4"
+            className="bg-green-600 text-gray-200 px-4 py-2 rounded mt-4 hover:bg-gray-200"
             onClick={handleAddToBookmarkClick}
           >
-            Add to Bookmarks
+            Ajouter aux Favoris
           </button>
         </div>
       )}
@@ -296,9 +298,9 @@ function BookmarkList({ bookmarks, setBookmarks }) {
   };
 
   return (
-    <div className="bg-green-300 rounded-xl h-96 text-white p-2">
+    <div className="bg-gray-100 rounded-xl text-green-600 p-4 border border-gray-400">
       {bookmarks.map((recipe, i) => (
-        <div key={i} className="flex border border-b-1 bg-transparent gap-2 p-9">
+        <div key={i} className="flex border border-b-1 bg-transparent gap-2 p-4">
           <img
             src={recipe.image}
             alt={recipe.label}
@@ -307,17 +309,17 @@ function BookmarkList({ bookmarks, setBookmarks }) {
             className="rounded"
           />
 
-          <div className="text-white">
-            <h3>{recipe.label}</h3>
+          <div className="text-green-600">
+            <h3 className="text-lg">{recipe.label}</h3>
             <span>Author: {recipe.source}</span>
           </div>
 
           <div className="flex items-center">
             <button
-              className="bg-red-500 text-white px-3 py-1 rounded mr-2"
+              className="bg-red-500 text-gray-200 px-3 py-1 rounded mr-2 hover:bg-gray-200"
               onClick={() => handleRemoveClick(i)}
             >
-              Remove
+              Retirer
             </button>
             {/* Replace 'url' with the actual property containing the recipe URL */}
             <a
@@ -325,8 +327,8 @@ function BookmarkList({ bookmarks, setBookmarks }) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <button className="bg-blue-500 text-white px-3 py-1 rounded">
-                View
+              <button className="bg-blue-500 text-gray-200 px-3 py-1 rounded hover:bg-gray-200">
+                Voir
               </button>
             </a>
           </div>
