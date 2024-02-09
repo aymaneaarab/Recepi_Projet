@@ -1,24 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./HomePage.module.css";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { change_lang } from "../redux/LanguaSlicer";
 // import recepi from "./recepi.png";
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 export default function Homepage() {
+  useEffect(()=>{
+    AOS.init();
+  },[])
   return (
+   
     <main className={styles.homepage}>
       <PageNav />
 
       <section>
+      <div data-aos="zoom-in"  data-aos-duration="2000">
         <h1>
           Find your prefered recipets just by one click.
           <br />
           With Recepi
         </h1>
         <h2>
+          <pre>
+
           A site that provide to you more than 1.000.000 recipites and give the
-          disponibility of adding recipites to your bookmark ☘
+             disponibility of adding recipites to your bookmark ☘
+          </pre>
         </h2>
         {/* <a href="google.com" className={styles.cta}>
           Start Now !!
@@ -27,6 +36,7 @@ export default function Homepage() {
           {" "}
           Start Now !!{" "}
         </NavLink>
+    </div>
       </section>
     </main>
   );
