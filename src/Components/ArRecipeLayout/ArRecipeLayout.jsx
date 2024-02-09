@@ -33,6 +33,9 @@ export default function ArRecipe() {
   function addtobookmark(newb) {
     setbookmark([...bookmark, newb]);
   }
+  function deletefrombookmark(name){
+setbookmark(bookmark.filter((b)=>b.title!==name))
+  }
   function clickbookmark() {
     setbookmarkclicked(!bookmarkclicked);
   }
@@ -42,7 +45,7 @@ export default function ArRecipe() {
   }
 
   return (
-    <div className="bg-green-100 h-screen">
+    <div className="bg-gray-100 h-screen">
       <Header
         query={query}
         setquery={setquery}
@@ -51,7 +54,7 @@ export default function ArRecipe() {
         bookmark={bookmark}
         AddRecipe={AddTodata}
       />
-      <div className="grid grid-cols-3 h-96 gap-9 my-8">
+      <div className="grid grid-cols-3 gap-4 h-4/5 mx-auto mt-8 p-4">
         <RecipeBoard
           selectedrecipe={selectedId}
           addtobookmark={addtobookmark}
@@ -59,8 +62,9 @@ export default function ArRecipe() {
           bookmarkclicked={bookmarkclicked}
           abierto={abierto}
           setabierto={setabierto}
+          deletefrombookmark={deletefrombookmark}
         />
-        <div className="h-auto w-1 bg-slate-400 justify-self-center"></div>
+        <div className="h-full w-1 bg-gray-400 justify-self-center"></div>
         <RecipeList
           query={query}
           recipes={searchedRecipes}

@@ -49,11 +49,11 @@ export function RecipeList({
     setabierto(true);
   }
   return (
-    <div className=" bg-green-300 rounded-xl h-96 text-white overflow-auto  mx-16 p-2 ">
+    <div className="bg-gray-100 rounded-xl text-green-600 overflow-auto p-4 border border-gray-400">
       {recipes?.map((recipe, i) => (
         <div
           key={i}
-          className=" flex border  border-b-1  bg-transparent gap-3 p-9 "
+          className="flex border border-b-1 bg-transparent gap-2 p-4 cursor-pointer hover:bg-gray-200"
           onClick={() => {
             selectrecipe(recipe.recipe.recipe_id);
             setabierto(true);
@@ -63,13 +63,13 @@ export function RecipeList({
           <img
             src={recipe.recipe.image_url}
             alt={recipe.recipe.title}
-            height="60px"
-            width="70px"
+            height="80px"
+            width="80px"
             className="rounded"
           />
 
-          <div className="text-white">
-            <h3>{recipe.recipe.title}</h3>
+<div className="text-green-600 p-4">
+            <h3 className="text-lg font-extrabold">{recipe.recipe.title}</h3>
             {/* <span>{recipe.recipe.publisher}:الكاتب</span> */}
           </div>
         </div>

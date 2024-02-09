@@ -2,6 +2,9 @@ import { message } from "antd";
 import { useState } from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useEffect } from "react";
+import { Tooltip } from "antd";
+import { Button, Popconfirm } from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 
 export function RecipeBoard({
   selectedrecipe,
@@ -10,7 +13,9 @@ export function RecipeBoard({
   bookmark,
   abierto,
   setabierto,
+  deletefrombookmark
 }) {
+  
   // console.log(selectedrecipe)
   const [data, setdata] = useState([]);
 
@@ -31,7 +36,9 @@ export function RecipeBoard({
   //
   const [isAdded, setIsAdedd] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
-
+  const confirm = (e) => {
+    message.success('تمت الحدف بنجاح');
+  };
   //
   const newbookmark = {
     title: filtredata[0]?.recipe?.title,
@@ -39,15 +46,7 @@ export function RecipeBoard({
   };
   function recipeboardaddbtn(e) {
     e.preventDefault();
-    // toast.success(
-    //   "تمت الاضافة بنجاح",
-    //   {
-    //     position: "bottom-right",
-    //   },
-    //   {
-    //     duration: 3000,
-    //   }
-    // );
+   
     messageApi.open({
       type: "success",
       content: "تمت الاضافة بنجاح",
@@ -61,26 +60,43 @@ export function RecipeBoard({
     }, 3000);
     // setabierto(!abierto);
   }
+  const cancel = (e) => {
+    message.error('تم الغاء العملية');
+  };
   function closetheboard() {
     setabierto(!abierto);
   }
+  function deletefrombookm(name){
+    deletefrombookmark(name)
+
+  }
 
   return (
-    <div className=" bg-green-300 rounded-xl h-96 text-white overflow-scroll overflow-x-hidden mx-9 p-2">
+    <div className="bg-gray-100 rounded-xl text-green-600 overflow-scroll p-4 border border-gray-400">
       <div>
         {selectedrecipe && filtredata && abierto && !bookmarkclicked && (
-          <div>
-            <div className="top-0 left-0">
-              <button onClick={closetheboard}>
-                <IoIosCloseCircleOutline className="w-16 h-16" />
-              </button>
+          <div className="relative">
+            <div className=" z-50	absolute top-0 left-0">
+              <Tooltip placement="top" title="اغلاق صفحة الوصفة">
+                <button onClick={closetheboard}>
+                  <IoIosCloseCircleOutline className="w-16 h-16" />
+                </button>
+              </Tooltip>
             </div>
 
-            <h1>{filtredata[0]?.recipe?.title}</h1>
-            <img src={filtredata[0]?.recipe?.image_url} alt="" />
+            <img
+              src={filtredata[0]?.recipe?.image_url}
+              alt=""
+              className="rounded w-full"
+            />
+            <h1 className="text-xl text-center text-white border bg-green-500 p-2">
+              {filtredata[0]?.recipe?.title}
+            </h1>
             <span>
-              <h6>:المكونات</h6>
-              <ul>
+              <h6 className="text-xl text-black text-center mt-2 border border-b underline p-1">
+                :المكونات
+              </h6>
+              <ul className="text-right text-xl font-extrabold">
                 {filtredata[0]?.recipe?.ingredients.map((ing, i) => (
                   <li key={i}>{ing}</li>
                 ))}
@@ -89,29 +105,26 @@ export function RecipeBoard({
             <div className="addToBookmarksDiv">
               <>
                 {contextHolder}
-                <button
-                  className="bg-green-500 p-4"
-                  onClick={(e) => recipeboardaddbtn(e)}
-                >
-                  اضافة للمفضلة
-                </button>
+                <center>
+                  <button
+                    className="bg-green-500 p-4 text-white text-center"
+                    onClick={(e) => recipeboardaddbtn(e)}
+                  >
+                    اضافة للمفضلة
+                  </button>
+                </center>
               </>
-              {/* {isAdded && (
-                      <Toaster position="bottom-right"
-                        reverseOrder={false}
-                        toastOptions={{
-                          duration: 3000,
-                        }}
-                      />
-                    )} */}
+             
             </div>
           </div>
         )}
-        {/* {
-      bookmark &&
-    } */}
+      
 
-        {bookmarkclicked && bookmark && <h6>الوصفات المحفوظة الخاصة بك :</h6>}
+        {bookmarkclicked && bookmark && (
+          <h6 className="text-center font-extrabold text-2xl">
+            : الوصفات المحفوظة الخاصة بك
+          </h6>
+        )}
 
         {bookmarkclicked &&
           bookmark &&
@@ -121,17 +134,35 @@ export function RecipeBoard({
                 key={i}
                 className="flex border  border-b-1  bg-transparent gap-3 p-9"
               >
-                {console.log("test object structure b", b)}
+                {/* {console.log("test object structure b", b)} */}
 
                 <img
                   src={b?.image_url}
                   alt={b?.title}
-                  width="70px"
-                  height="70px"
+                  width="90px"
+                  height="90px"
                 />
-                {console.log(b?.image_url)}
-                <h6 className="text-slate-50">{b?.title}</h6>
-                {console.log(b?.title)}
+                <div className="flex text-green-900 font-extrabold text-xl">
+
+                <h6>
+                  {b?.title}
+                </h6>
+                </div>
+<div className="flex items-end">
+<Popconfirm
+    title="حدف الوصفة"
+    description="هل انت متاكد من حدف الوصفة?"
+    cancelText="الغاء"
+    okText="حدف"
+    onConfirm={()=>deletefrombookm(b?.title)}
+    okType="danger"
+    icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
+  >
+                <button className="bg-red-600 text-white p-2">
+                  حدف الوصفة
+                </button>
+                </Popconfirm>
+</div>
               </div>
             </div>
           ))}
@@ -139,3 +170,6 @@ export function RecipeBoard({
     </div>
   );
 }
+
+
+
