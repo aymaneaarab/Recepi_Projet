@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Recipe from "./Recipe";
 
 export function RecipeList({
   query,
@@ -50,30 +51,8 @@ export function RecipeList({
   }
   return (
     <div className="bg-gray-100 rounded-xl text-green-600 overflow-auto p-4 border border-gray-400">
-      {recipes?.map((recipe, i) => (
-        <div
-          key={i}
-          className="flex border border-b-1 bg-transparent gap-2 p-4 cursor-pointer hover:bg-gray-200"
-          onClick={() => {
-            selectrecipe(recipe.recipe.recipe_id);
-            setabierto(true);
-          }}
-        >
-          {console.log(recipe)}
-          <img
-            src={recipe.recipe.image_url}
-            alt={recipe.recipe.title}
-            height="80px"
-            width="80px"
-            className="rounded"
-          />
-
-<div className="text-green-600 p-4">
-            <h3 className="text-lg font-extrabold">{recipe.recipe.title}</h3>
-            {/* <span>{recipe.recipe.publisher}:الكاتب</span> */}
-          </div>
-        </div>
-      ))}
+      <Recipe recipes={recipes} selectrecipe={selectrecipe} setabierto={setabierto}/>
     </div>
   );
 }
+
