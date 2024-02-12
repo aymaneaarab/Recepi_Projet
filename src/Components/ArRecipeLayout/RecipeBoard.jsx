@@ -6,6 +6,7 @@ import { Tooltip } from "antd";
 import { Button, Popconfirm } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import Aos from "aos";
+import 'aos/dist/aos.css';
 
 export function RecipeBoard({
   selectedrecipe,
@@ -46,18 +47,29 @@ export function RecipeBoard({
   };
   function recipeboardaddbtn(e) {
     e.preventDefault();
-
+    const isRecipeInBookmarks = bookmark.some(
+      (b) => b.title === newbookmark.title
+    );
+    if (!isRecipeInBookmarks){
+      messageApi.open({
+        type: "success",
+        content: "تمت الاضافة بنجاح",
+        duration: 2,
+      });
+      addtobookmark(newbookmark);
+      setIsAdedd(true);
+  
+      setTimeout(() => {
+        setIsAdedd(false);
+      }, 3000);
+    }
+  else {
     messageApi.open({
-      type: "success",
-      content: "تمت الاضافة بنجاح",
+      type: "warning",
+      content: "تمت اضافة هده الوصفة من قبل",
       duration: 2,
     });
-    addtobookmark(newbookmark);
-    setIsAdedd(true);
-
-    setTimeout(() => {
-      setIsAdedd(false);
-    }, 3000);
+  }
     // setabierto(!abierto);
   }
   const cancel = (e) => {

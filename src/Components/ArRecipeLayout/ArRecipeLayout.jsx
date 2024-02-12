@@ -31,6 +31,7 @@ export default function ArRecipe() {
   const [bookmarkclicked, setbookmarkclicked] = useState(false);
 
   function addtobookmark(newb) {
+    
     setbookmark([...bookmark, newb]);
   }
   function deletefrombookmark(name){

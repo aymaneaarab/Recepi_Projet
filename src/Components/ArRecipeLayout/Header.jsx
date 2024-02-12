@@ -140,6 +140,7 @@ export function Header({
                   name="recipeName"
                   value={recipeData.recipeName}
                   onChange={handleInputChange}
+                  required
                 />
               </label>
               <label>
@@ -149,6 +150,7 @@ export function Header({
                   name="publisher"
                   value={recipeData.publisher}
                   onChange={handleInputChange}
+                  required
                 />
               </label>
               <label>
@@ -158,6 +160,7 @@ export function Header({
                   name="imageUrl"
                   value={recipeData.imageUrl}
                   onChange={handleInputChange}
+                  required
                 />
               </label>
 
@@ -169,6 +172,7 @@ export function Header({
                     name={`ingredient${index}`}
                     value={recipeData[`ingredient${index}`]}
                     onChange={handleInputChange}
+                    required
                   />
                 </>
               ))}
