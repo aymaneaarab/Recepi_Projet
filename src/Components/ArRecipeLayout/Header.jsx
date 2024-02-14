@@ -97,8 +97,8 @@ export function Header({
     setOpen(false);
   }
   return (
-    <div className="bg-green-600 flex justify-between items-center p-8 rounded text-gray-200">
-      <div className="flex cursor-pointer" onClick={clickbookmark}>
+    <div className="bg-green-600 flex justify-between items-center p-10 rounded text-gray-200">
+      <div className="flex cursor-pointer hover:bg-green-700 hover:text-black p-2" onClick={clickbookmark}>
         {!bookmarkclicked ? (
           <CiBookmark className="bookmark" />
         ) : (
@@ -106,7 +106,7 @@ export function Header({
             <FaBookmark className="bookmark" />
           </div>
         )}
-        <pre>الوصفات المحفوظة</pre>
+        <pre className="font-semibold text-white text-l">الوصفات المحفوظة</pre>
       </div>
       <div>
         <Button
@@ -132,50 +132,70 @@ export function Header({
           {contextHolder}
 
           <form>
-            <div className="p-11">
-              <label>
-                اسم الوصفة:
+            <div className="p-11 gap-5">
+            <div className="flex flex-wrap gap-5 p-5">
+
+             
                 <input
                   type="text"
                   name="recipeName"
                   value={recipeData.recipeName}
                   onChange={handleInputChange}
                   required
+                  className="outline-dotted outline-green-600"
+
                 />
-              </label>
-              <label>
-                ناشر الوصفة:
+                 <label>
+                اسم الوصفة
+            </label>
+             
                 <input
                   type="text"
                   name="publisher"
                   value={recipeData.publisher}
                   onChange={handleInputChange}
                   required
+                  className="outline-dotted outline-green-600"
+
                 />
-              </label>
-              <label>
-                رابط صورة الوصفة:
+             <label>
+                ناشر الوصفة
+                </label>
+             
                 <input
                   type="text"
                   name="imageUrl"
                   value={recipeData.imageUrl}
                   onChange={handleInputChange}
+                  className="outline-dotted outline-green-600"
+
                   required
                 />
-              </label>
+                 <label>
+                رابط صورة الوصفة
+                </label>
+                </div>
+                <h3 className="text-center bg-green-500">المكونات</h3> 
+<div className="flex flex-row-reverse	 flex-wrap gap-5 p-5">
 
               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((index) => (
-                <>
-                  <label>المكون {index}:</label>
+
+            <>
+                                                {/* <label>المكون: {index}</label> */}
+
                   <input
                     type="text"
                     name={`ingredient${index}`}
                     value={recipeData[`ingredient${index}`]}
                     onChange={handleInputChange}
                     required
+                    placeholder={`المكون ${index}`}
+                    className="outline-dotted outline-green-600"
                   />
-                </>
-              ))}
+</>
+         
+              ))} </div>
+
             </div>
           </form>
         </Modal>{" "}
@@ -183,7 +203,7 @@ export function Header({
       <div className="">
         <input
           type="text"
-          className="  placeholder-green-900 rounded text-green-900 p-2  "
+          className="  placeholder-green-900 rounded text-green-900 p-4 grow w-96  "
           placeholder="ابحث عن وصفة "
           value={query}
           onChange={(e) => setquery(e.target.value)}
@@ -191,8 +211,8 @@ export function Header({
       </div>
           <NavLink to="/">
       <div className="flex">
-        <span className="text-xl mx-3">🥦</span>
-        <div className="font-semibold tracking-widest font-mono justify-self-end">
+        <span className="text-2xl mx-3">🥦</span>
+        <div className="font-semibold tracking-widest font-mono justify-self-end text-2xl text-white">
           {/* <img src={Recepi} alt="Recepi Logo" height="20%" width="20%" className="ml-36 lg:ml-96 justify-self-start	" /> */}
             
             RECEPI
