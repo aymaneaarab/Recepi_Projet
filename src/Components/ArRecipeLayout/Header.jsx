@@ -97,8 +97,8 @@ export function Header({
     setOpen(false);
   }
   return (
-    <div className="bg-green-600 flex justify-between items-center p-10 rounded text-gray-200">
-      <div className="flex cursor-pointer hover:bg-green-700 hover:text-black p-2" onClick={clickbookmark}>
+    <div className="bg-gray-100 flex justify-between items-center p-10 rounded text-green-700">
+      <div className="flex cursor-pointer hover:bg-gray-300 hover:text-black p-2 rounded" onClick={clickbookmark}>
         {!bookmarkclicked ? (
           <CiBookmark className="bookmark" />
         ) : (
@@ -106,12 +106,12 @@ export function Header({
             <FaBookmark className="bookmark" />
           </div>
         )}
-        <pre className="font-semibold text-white text-l">الوصفات المحفوظة</pre>
+        <pre className="font-semibold text-green-800 text-l">الوصفات المحفوظة</pre>
       </div>
       <div>
         <Button
           type="text"
-          className="text-white"
+          className="text-green-800"
           onClick={() => setOpen(true)}
         >
           اضافة وصفة للقائمة
@@ -203,7 +203,7 @@ export function Header({
       <div className="">
         <input
           type="text"
-          className="  placeholder-green-900 rounded text-green-900 p-4 grow w-96  "
+          className="  placeholder-gray-400 rounded text-green-900 p-4 grow w-96  "
           placeholder="ابحث عن وصفة "
           value={query}
           onChange={(e) => setquery(e.target.value)}
@@ -212,7 +212,7 @@ export function Header({
           <NavLink to="/">
       <div className="flex">
         <span className="text-2xl mx-3">🥦</span>
-        <div className="font-semibold tracking-widest font-mono justify-self-end text-2xl text-white">
+        <div className="font-semibold tracking-widest font-mono justify-self-end text-2xl text-green-700">
           {/* <img src={Recepi} alt="Recepi Logo" height="20%" width="20%" className="ml-36 lg:ml-96 justify-self-start	" /> */}
             
             RECEPI

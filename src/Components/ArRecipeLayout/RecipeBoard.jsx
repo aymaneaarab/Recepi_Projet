@@ -85,7 +85,7 @@ export function RecipeBoard({
     Aos.init();
   }, [selectedrecipe,abierto]);
   return (
-    <div className="bg-gray-100 rounded-xl text-green-600 overflow-scroll p-4 border border-gray-400">
+    <div className="bg-gray-100 rounded-xl text-green-600 overflow-auto p-4 border border-gray-200">
       <div>
         {selectedrecipe && filtredata && abierto && !bookmarkclicked && (
           <div className="relative">

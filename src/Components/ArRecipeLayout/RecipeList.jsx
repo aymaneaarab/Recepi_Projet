@@ -50,7 +50,7 @@ export function RecipeList({
     setabierto(true);
   }
   return (
-    <div className="bg-gray-100 rounded-xl text-green-600 overflow-auto p-4 border border-gray-400">
+    <div className="bg-white rounded-xl text-green-600 overflow-auto p-4 border border-gray-100">
       <Recipe recipes={recipes} selectrecipe={selectrecipe} setabierto={setabierto}/>
     </div>
   );

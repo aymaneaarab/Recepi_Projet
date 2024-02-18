@@ -5,7 +5,7 @@ export default function Recipe({ recipes, selectrecipe, setabierto }) {
         
         <div
         key={i}
-        className="flex border border-b-1 bg-transparent gap-2 p-4 cursor-pointer hover:bg-gray-200"
+        className="flex border border-b-1 bg-transparent gap-2 p-4 cursor-pointer hover:bg-gray-200 "
         onClick={() => {
           selectrecipe(recipe.recipe.recipe_id);
           setabierto(true);

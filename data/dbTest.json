@@ -2090,28 +2090,47 @@
       "id": "2512"
     },
     {
-      "id": "b751",
       "recipe": {
-        "publisher": "TEST",
+        "publisher": "المرأة الرائدة",
         "ingredients": [
-          "bbbb",
-          "      sk",
-          " i",
-          " i",
-          "szj",
-          "sjzç",
-          "snzj",
-          "jzn",
-          "zsjn",
-          "szjnx",
-          "xsjn"
+          "4 فصوص ثوم مفرومة ناعماً",
+          "ملح كوشير",
+          "1/3 كوب زيت زيتون",
+          "3 ملاعق كبيرة زبادي عادي",
+          "2 جنيهًا من فخذ الدجاج بدون جلد وعظم، مقطع إلى قطع بحجم 2 بوصة",
+          "2 فصوص ثوم مفرومة",
+          "1/2 كوب بقدونس مفروم ناعماً",
+          "2 ملاعق صغيرة كمون مطحون",
+          "2 ملاعق صغيرة بابريكا",
+          "1/4 ملعقة صغيرة من حبوب الفلفل الحار المهروسة",
+          "ملح كوشير",
+          "زيت نباتي (للشواء)",
+          "خبز بيتا دافئ، لبنة (زبادي لبناني مصفى)، طماطم مفرومة، وأوراق نعناع طازجة (للتقديم)",
+          "أدوات متخصصة: ستة عشر عصي خيزرانية أو معدنية بطول 8 بوصات"
         ],
         "source_url": "",
-        "recipe_id": "cfd69ba1-fb64-4f9a-8687-d850f838866f",
-        "image_url": "https://m.media-amazon.com/images/I/91dHRGIV65L._UF1000,1000_QL80_.jpg",
+        "recipe_id": "",
+        "image_url": "https://assets.bonappetit.com/photos/57ad3f29f1c801a1038bcadb/master/w_1280,c_limit/moroccan-chicken-brochettes.jpg",
         "social_rank": 100,
-        "publisher_url": "#",
-        "title": "ككك"
+        "publisher_url": "http://thepioneerwoman.com",
+        "title": "شيش طاووق مغربي"
+      }
+    },
+    {
+      "recipe": {
+        "publisher": "المرأة الرائدة",
+        "ingredients": [
+          "2 كوب من أوراق النعناع الطازجة مضغوطة بشكل فضفاض بالإضافة إلى أفرع النعناع للتزيين",
+          "1/3 كوب سكر",
+          "2 ملاعق طعام من الشاي الأخضر بنوعية غنباودر (متوفر في متاجر الشاي المتخصصة)",
+          "6 أكواب من الماء المغلي"
+        ],
+        "source_url": "",
+        "recipe_id": "",
+        "image_url": "https://static.webteb.net/images/content/tbl_articles_article_21072_70108b1d619-426c-4e09-b288-3abc1fa5a0ab.jpg",
+        "social_rank": 100,
+        "publisher_url": "http://thepioneerwoman.com",
+        "title": "شاي النعناع المغربي"
       }
     }
   ]
