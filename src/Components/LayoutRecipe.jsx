@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { CiBookmark } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa";
+import { IoIosCloseCircleOutline } from 'react-icons/io'; // Import IoIosCloseCircleOutline from react-icons/io
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { NavLink } from "react-router-dom";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { Popconfirm } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
+import Aos from "aos";
+import 'aos/dist/aos.css';
 
 const key = "cbed10cacb9c81e2a7e48b59678ca090";
 const app_id = "b90b16e8";
@@ -96,39 +99,39 @@ export default function LayoutRecipe() {
   }, [query]);
 
   return (
-    <div className="bg-gray-100 h-screen">
-      <Header
-        query={query}
-        setQuery={setQuery}
-        handleViewBookmarksClick={handleViewBookmarksClick}
-      />
-
-      <div className="grid grid-cols-3 gap-4 h-4/5 mx-auto mt-8 p-4">
-        <RecipeList
-          query={query}
-          recipes={recipes}
-          setRecipes={setRecipes}
-          selectRecipe={selectRecipe}
-        />
-
-        <div className="h-full w-1 bg-gray-400 justify-self-center"></div>
-
-        {showBookmarkList ? (
-          <div className="bg-gray-300 rounded-xl text-white overflow-scroll p-4 border border-gray-400">
-            <BookmarkList bookmarks={bookmarks} setBookmarks={setBookmarks} />
-          </div>
-        ) : (
-          <RecipeBoard
-            selectedRecipeId={selectedId}
-            addToBookmarkList={addToBookmarkList}
+      <div style={{backgroundImage: 'linear-gradient(to bottom right, #66b539, #4b6a33)'} } className="p-16">
+        <div className="bg-gray-100 h-screen container mx-auto  rounded-3xl">
+          <Header
+            query={query}
+            setQuery={setQuery}
+            handleViewBookmarksClick={handleViewBookmarksClick}
           />
-        )}
+  
+          <div className="grid grid-cols-2 gap-4 h-4/5 mx-auto mt-8 p-4">
+            <RecipeList
+              query={query}
+              recipes={recipes}
+              setRecipes={setRecipes}
+              selectRecipe={selectRecipe}
+            />
+  
+            {showBookmarkList ? (
+              
+                <BookmarkList bookmarks={bookmarks} setBookmarks={setBookmarks} />
+              
+            ) : (
+              <RecipeBoard
+                selectedRecipeId={selectedId}
+                addToBookmarkList={addToBookmarkList}
+              />
+            )}
+          </div>
+  
+          <ToastContainer />
+        </div>
       </div>
-
-      <ToastContainer />
-    </div>
-  );
-}
+    );
+  }
 
 function Header({ query, setQuery, handleViewBookmarksClick }) {
   const [bookmarkClicked, setBookmarkClicked] = useState(false);
@@ -139,24 +142,24 @@ function Header({ query, setQuery, handleViewBookmarksClick }) {
   };
 
   return (
-    <div className="bg-green-600 flex justify-between items-center p-8 rounded text-gray-200">
+    <div className="bg-gray-200 flex justify-between items-center p-10  text-green-700 rounded-lg">
       <NavLink to="/">
         <div className="flex">
           <span className="text-xl mx-3">🥦</span>
-          <p className="font-semibold tracking-widest font-mono"> RECEPI</p>
+          <p className="font-semibold tracking-widest font-mono justify-self-end text-2xl text-green-700"> RECEPI</p>
         </div>
       </NavLink>
       <div className="">
         <input
           type="text"
-          className="bg-green-300 placeholder-white rounded p-2 w-40"
+          className="placeholder-gray-400 rounded-full text-green-900 p-4 grow w-[32rem] focus:outline-none focus:ring focus:border-green-500 "
           placeholder="Search for a recipe"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
       </div>
       <div className="font-semibold">
-        <div className="flex cursor-pointer" onClick={clickbookmark}>
+        <div className="fflex cursor-pointer hover:bg-gray-300 hover:text-black p-2 rounded" onClick={clickbookmark}>
           {!bookmarkClicked ? (
             <CiBookmark className="bookmark" />
           ) : (
@@ -164,7 +167,7 @@ function Header({ query, setQuery, handleViewBookmarksClick }) {
               <FaBookmark className="bookmark" />
             </div>
           )}
-          <pre>Saved Recipes</pre>
+          <pre className="font-semibold text-green-800 text-l">Saved Recipes</pre>
         </div>
       </div>
     </div>
@@ -211,7 +214,7 @@ function RecipeList({ query, recipes, setRecipes, selectRecipe }) {
   }, [query, setRecipes]);
 
   return (
-    <div className="bg-gray-100 rounded-xl text-green-600 overflow-auto p-4 border border-gray-400">
+    <div className="bg-white rounded-xl text-green-600 overflow-auto p-4 border border-gray-100">
       {recipes?.map((recipe, i) => (
         <div
           key={i}
@@ -278,11 +281,12 @@ function RecipeBoard({ selectedRecipeId, addToBookmarkList }) {
   };
 
   return (
-    <div className={`bg-gray-100 rounded-xl text-green-600 overflow-scroll p-4 border border-gray-400 relative`}>
+    <div className="bg-gray-100 rounded-xl text-green-600 overflow-auto p-4 border border-gray-200">
       {data && (
-        <div>
-          <img src={data?.image} alt={data?.label} className="rounded w-full" />
-
+        <div data-aos="fade-left" data-aos-duration="1000">
+        <div className="h-3/5">
+          <img src={data?.image} alt={data?.label} className="rounded object-cover h-80 w-full" />
+</div>
           <div className="mt-2">
             <h2 className="text-xl text-center text-white border bg-green-500 p-2">{data?.label}</h2>
             <p>{data?.description}</p>
@@ -290,7 +294,7 @@ function RecipeBoard({ selectedRecipeId, addToBookmarkList }) {
 
           <div className="mt-4">
             <h3 className="text-xl text-black text-center mt-2 border border-b underline p-1">Ingredients:</h3>
-            <ul className="text-left text-xl font-extrabold">
+            <ul className="text-right text-xl font-extrabold">
               {data?.ingredients.map((ingredient, index) => (
                 <li key={index}>{ingredient.text}</li>
               ))}
@@ -298,13 +302,12 @@ function RecipeBoard({ selectedRecipeId, addToBookmarkList }) {
           </div>
           <center>
             <button
-              className="bg-green-500 p-4 text-white text-center"
+              className="bg-green-500 p-4 m-6 text-white text-center"
               onClick={handleAddToBookmarkClick}
             >
               Add to Bookmarks
             </button>
           </center>
-          
 
           {/* Clear button */}
           <button
@@ -318,6 +321,8 @@ function RecipeBoard({ selectedRecipeId, addToBookmarkList }) {
     </div>
   );
 }
+
+
 function BookmarkList({ bookmarks, setBookmarks }) {
   const handleRemoveClick = (index) => {
     const updatedBookmarks = [...bookmarks];
@@ -327,10 +332,11 @@ function BookmarkList({ bookmarks, setBookmarks }) {
 
   return (
     <div className="bg-gray-100 rounded-xl text-green-600 overflow-auto p-4 border border-gray-400">
-      {bookmarks.length === 0 && <h3 className="text-lg font-semibold mb-4  text-center">Your bookmark list is empty !!!!!!!</h3>}
-      {bookmarks.length > 0 && <h3 className="text-lg font-semibold mb-4  text-center">Here are your saved recipes:</h3>}
+      {bookmarks.length === 0 && <h3 className="text-center font-extrabold text-2xl">Your bookmark list is empty !!!!!!!</h3>}
+      {bookmarks.length > 0 && <h3 className="text-center font-extrabold text-2xl">Here are your saved recipes:</h3>}
       {bookmarks.map((recipe, i) => (
-        <div key={i} className="flex border border-b-1 bg-transparent gap-3 p-9 justify-between">
+        <div data-aos="fade-down">
+        <div key={i} className="flex border  border-b-1  bg-transparent gap-3 p-9">
           <div className="flex">
             <img
               src={recipe.image}
@@ -341,7 +347,7 @@ function BookmarkList({ bookmarks, setBookmarks }) {
             />
 
             <div className="flex flex-col">
-              <div className="flex text-green-600 font-extrabold text-xl px-5 py-8">
+              <div className="flex text-green-900 font-extrabold text-xl">
                 <h3 className="text-xl ">{recipe.label}</h3>
               </div>
 
@@ -373,6 +379,7 @@ function BookmarkList({ bookmarks, setBookmarks }) {
                 </a>
               </div>            
           </div>
+        </div>
         </div>
       ))}
     </div>
