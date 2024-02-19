@@ -58,7 +58,7 @@ setbookmark(bookmark.filter((b)=>b.title!==name))
         bookmark={bookmark}
         AddRecipe={AddTodata}
       />
-      <div className="grid grid-cols-3 gap-4 h-4/5 mx-10 mt-8 p-4">
+      <div className="grid grid-cols-2 gap-4 h-4/5 mx-10 mt-8 p-4">
         <RecipeBoard
           selectedrecipe={selectedId}
           addtobookmark={addtobookmark}
@@ -68,7 +68,7 @@ setbookmark(bookmark.filter((b)=>b.title!==name))
           setabierto={setabierto}
           deletefrombookmark={deletefrombookmark}
         />
-        <div className="h-full w-1 bg-gray-100   justify-self-center"></div>
+        {/* <div className="h-full w-1 bg-gray-100   justify-self-center"></div> */}
         <RecipeList
           query={query}
           recipes={searchedRecipes}

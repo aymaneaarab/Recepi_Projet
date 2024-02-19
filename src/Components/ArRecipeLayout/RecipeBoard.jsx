@@ -97,12 +97,14 @@ export function RecipeBoard({
               </Tooltip>
             </div>
             <div data-aos="fade-left" data-aos-duration="1000">
+<div className="h-3/5">
 
             <img
               src={filtredata[0]?.recipe?.image_url}
               alt=""
-              className="rounded w-full"
-            />
+              className="rounded object-cover h-80 w-full" 
+              />
+</div>
             <h1 className="text-xl text-center text-white border bg-green-500 p-2">
               {filtredata[0]?.recipe?.title}
             </h1>

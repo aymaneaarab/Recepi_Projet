@@ -97,7 +97,7 @@ export function Header({
     setOpen(false);
   }
   return (
-    <div className="bg-gray-100 flex justify-between items-center p-10 rounded text-green-700">
+  <div className="bg-gray-200 flex justify-between items-center p-10  text-green-700 rounded-lg">
       <div className="flex cursor-pointer hover:bg-gray-300 hover:text-black p-2 rounded" onClick={clickbookmark}>
         {!bookmarkclicked ? (
           <CiBookmark className="bookmark" />
@@ -203,7 +203,7 @@ export function Header({
       <div className="">
         <input
           type="text"
-          className="  placeholder-gray-400 rounded text-green-900 p-4 grow w-96  "
+          className="  placeholder-gray-400 rounded-full text-green-900 p-4 grow w-[32rem] focus:outline-none focus:ring focus:border-green-500 "
           placeholder="ابحث عن وصفة "
           value={query}
           onChange={(e) => setquery(e.target.value)}
