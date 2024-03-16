@@ -69,9 +69,7 @@ function PageNav({ handleLangChange, langue }) {
     <nav className={styles.nav}>
       <Logo langue={langue} />
       <ul>
-        <li>
-          <a href="google.com">About us</a>
-        </li>
+      
         <li>
           <span>
             {langue === "ar"
@@ -90,9 +88,9 @@ function PageNav({ handleLangChange, langue }) {
 
 function Logo({ langue }) {
   return (
-    <a href="google.com">
+    <a href="/">
       <h3 className="text-3xl font-semibold tracking-widest font-mono">
-        🥦 {langue === "ar" ? "ريسيبي" : "Recepi"}
+        🥦 {langue === "ar" ? "Recepi" : "Recepi"}
       </h3>
     </a>
   );

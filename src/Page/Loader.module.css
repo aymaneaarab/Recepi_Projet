@@ -1,18 +1,19 @@
 .loader {
-    width: 150px; /* control the size */
+    width: 200px; 
     aspect-ratio: 1;
     display: grid;
+    margin: 15% auto;
+
     mask: conic-gradient(from 22deg, #0003, #000);
     animation: load 1s steps(8) infinite;
 
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    /* position: absolute; */
+  
     padding: 10px;
   }
   .loader,
   .loader:before {
-    --_g: linear-gradient(#24aa67 0 0) 50%; /* update the color here */
+    --_g: linear-gradient(#24aa67 0 0) 50%;
     background: 
       var(--_g)/34% 8%  space no-repeat,
       var(--_g)/8%  34% no-repeat space;

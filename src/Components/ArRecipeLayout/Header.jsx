@@ -95,6 +95,21 @@ export function Header({
       duration: 2,
     });
     setOpen(false);
+    setRecipeData({
+      recipeName: "",
+      publisher: "",
+      imageUrl: "",
+      ingredient1: "",
+      ingredient2: "",
+      ingredient3: "",
+      ingredient4: "",
+      ingredient5: "",
+      ingredient6: "",
+      ingredient7: "",
+      ingredient8: "",
+      ingredient9: "",
+      ingredient10: "",
+    });
   }
   return (
   <div className="bg-gray-200 flex justify-between items-center p-10  text-green-700 rounded-lg">
