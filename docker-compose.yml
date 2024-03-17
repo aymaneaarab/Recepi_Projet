@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  react-app:
+    build: ./projet
+    ports:
+      - "3000:3000"
+
+  json-server:
+    build: ./projet/data
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./projet/data:/app  

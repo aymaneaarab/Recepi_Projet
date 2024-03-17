@@ -1,0 +1,6 @@
+FROM node:latest
+WORKDIR /app
+COPY . .
+EXPOSE 9000
+RUN npm install json-server 
+CMD [ "json-server","--watch","dbTest.json","--port","9000" ]
