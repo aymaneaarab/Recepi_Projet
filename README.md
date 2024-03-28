@@ -32,7 +32,8 @@ Ainsi que la version Arabe permet aussi de chercher et voir et interagir avec le
           ```npm run server```
 
     
-    
+   ### Ouvre ton navigateur et tapper :
+
           ``http://localhost:3000``
 
 
