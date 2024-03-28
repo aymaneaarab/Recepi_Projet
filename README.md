@@ -28,7 +28,7 @@ Ainsi que la version Arabe permet aussi de chercher et voir et interagir avec le
 
 
 ```npm start```
-    ## Ouvre un autre "Commande line" et tapper :
+ # Ouvre un autre "Commande line" et tapper :
     ```npm run server```
 
     
