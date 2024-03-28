@@ -17,7 +17,7 @@ Ainsi que la version Arabe permet aussi de chercher et voir et interagir avec le
 
 
 
-```git clone <repository-url>```
+```git clone https://github.com/aymaneaarab/Recepi_Projet.git ```
 
 
 
